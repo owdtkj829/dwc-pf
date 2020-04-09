@@ -20,6 +20,7 @@ test:
   <<: *default
   database: db/test.mysql2
 
+
 production:
   <<: *default
   database: <%= ENV['DB_DATABASE'] %>
