@@ -1,0 +1,43 @@
+<section class="slice sct-color-1">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-6 col-md-offset-3 post_image_form">
+                        <div class="section-title-wrapper style-1 v1">
+                            <h3 class="section-title section-title-sm left">
+                                <span>アーティスト作成</span>
+                            </h3>
+                        </div>
+                        <%= form_for (@artist) do |f| %>
+                        <div class="row">
+                            <div class="col-sm-12">
+                            	<%= f.label :image,'アーティスト画像' %>
+                                <%= f.attachment_field :image, class: "btn btn-brown artist_attachment_field", id: "image_select"%>
+                            </div>
+                        </div><br>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group has-icon">
+                                    <%= f.label :explanation,'アーティスト名' %>
+                                    <%= f.text_field :name, class: "form-control" %>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <%= f.label :explanation,'アーティスト情報' %>
+                                <%= f.text_field :explanation, class: "form-control" %>
+                            </div>
+                        </div>
+                        <hr>
+                        <%= f.submit '　新規作成　',class: "btn btn-lg btn-block btn-base-1 mt-20" %>
+                        <% end %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
