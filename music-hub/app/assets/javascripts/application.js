@@ -11,6 +11,36 @@
 // about supported directives.
 //
 //= require rails-ujs
-//= require activestorage
 //= require turbolinks
-//= require_tree .
+//= require jquery
+//= require bootstrap-sprockets
+//= require_tree
+//= require moment
+//= require fullcalendar
+//= require moment/ja.js
+//= require tempusdominus-bootstrap-4.js 
+
+$(function() {
+    //FullCalendarの設定を読み込み
+    function eventCalendar() {
+        return $('#calendar').fullCalendar({});
+    };
+    //FullCalendarを削除
+    function clearCalendar() {
+        $('#calendar').html('');
+    };
+    //FulCalendarを呼び出す
+    $(document).on('turbolinks:load', function() {
+        eventCalendar();
+    });
+    $(document).on('turbolinks:before-cache', clearCalendar);
+});
+
+//ハンバーガーメニュー
+$(function() {
+  $('.menu-trigger').on('click', function() {
+    $(this).toggleClass('active');
+    $('#sp-menu').fadeToggle();
+    return false;
+  });
+ });

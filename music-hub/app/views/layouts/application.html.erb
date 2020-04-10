@@ -1,15 +1,88 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <title>MusicHub</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+</head>
 
-  <body>
+<body>
+    <header class="navbar navbar-expand-md">
+        <div class="container">
+            <div class="row-header-text">
+                <% if user_signed_in? %>
+                <!--if文でログイン時とログアウト時の表示を変更-->
+                <nav class="nav navbar-nav navbar-left">
+                    <%= link_to image_tag('musichub.jpg', class: 'headerlogo'), root_path %>
+                </nav>
+                <div id="sp-menu">
+                    <ul class="nav nav-pills navbar-right">
+                        <li class="topmenu" href="#">
+                            <a>MYPAGE</a>
+                        </li>
+                        <li class="topmenu" href="#">
+                            <a>ARTIST</a>
+                        </li>
+                        <li class="topmenu" href="#">
+                            <a>SEARCH</a>
+                        </li>
+                        <li class="topmenu" href="#">
+                            <%= link_to ' SIGN OUT ', destroy_user_session_path, method: :delete%>
+                        </li>
+                    </ul>
+                </div>
+                <div id="hm-icon">
+                    <a class="menu-trigger" href="#">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </a>
+                </div>
+                <% else %>
+                <nav class="nav navbar-nav navbar-left">
+                    <h2 class="titlelogo">
+                        <%= link_to image_tag('musichub.jpg', class: 'headerlogo'), root_path %>
+                    </h2>
+                </nav>
+                <div id="sp-menu">
+                    <ul class="nav nav-pills">
+                        <li class="topmenu" href="#">
+                            <%= link_to ' TOP', root_path %>
+                        </li>
+                        <li class="topmenu" href="#">
+                            <%= link_to ' ABOUT ', about_path %>
+                        </li>
+                        <li class="topmenu" href="#">
+                            <%= link_to ' SIGN UP',new_user_registration_path %>
+                        </li>
+                        <li class="topmenu" href="#">
+                            <%= link_to ' SIGN IN ', new_user_session_path %>
+                        </li>
+                        <% end %>
+                    </ul>
+                </div>
+                <div id="hm-icon">
+                    <a class="menu-trigger" href="#">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript" src="js/jquery.min.js"></script>
+        <script type="text/javascript" src="js/script.js"></script>
+    </header>
+    <p class="notice">
+        <%= notice %>
+    </p>
+    <p class="alert">
+        <%= alert %>
+    </p>
     <%= yield %>
-  </body>
+</body>
+
 </html>
