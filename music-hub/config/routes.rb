@@ -4,6 +4,12 @@ Rails.application.routes.draw do
   root :to => 'home#tops'
   get '/about' => 'home#about'
 
+  #artistお気に入り登録・解除
+  post '/artists/:artist_id/favorites' => "favorites#create"
+  delete '/artists/:artist_id/favorites' => "favorites#destroy"
+
+  resources :users, only: [:show, :create, :update, :destroy]
   resources :artists
-  
+  resources :schedules, only: [:index, :show, :create, :update, :destroy]
+
 end
