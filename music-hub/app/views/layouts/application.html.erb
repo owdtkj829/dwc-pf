@@ -9,7 +9,7 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 </head>
 
-<body>
+<body data-turbolinks="false">
     <header class="navbar navbar-expand-md">
         <div class="container">
             <div class="row-header-text">
@@ -21,16 +21,16 @@
                 <div id="sp-menu">
                     <ul class="nav nav-pills navbar-right">
                         <li class="topmenu" href="#">
-                            <a>MYPAGE</a>
+                            <%= link_to 'MYPAGE', user_path(current_user)%>
                         </li>
                         <li class="topmenu" href="#">
-                            <a>ARTIST</a>
+                            <%= link_to 'ARTISTS', artists_path%>
                         </li>
                         <li class="topmenu" href="#">
                             <a>SEARCH</a>
                         </li>
                         <li class="topmenu" href="#">
-                            <%= link_to ' SIGN OUT ', destroy_user_session_path, method: :delete%>
+                            <%= link_to 'SIGN OUT', destroy_user_session_path, method: :delete%>
                         </li>
                     </ul>
                 </div>
