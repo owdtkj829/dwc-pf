@@ -6,4 +6,5 @@ class User < ApplicationRecord
 
   has_many :artists
   has_many :schedules
+  has_many :favorites
 end
