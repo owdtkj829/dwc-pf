@@ -1,0 +1,37 @@
+<div class="container">
+    <div class="row">
+        <h3>アーティストカレンダー</h3>
+        <div class="col-xs-3">
+            <h2>User info</h2>
+            <table class="table">
+                <div class="row">
+                    <tr>
+                        <th>
+                            <%= attachment_image_tag @artist, :image,size:"100x100", fallback: "no_image.jpg" %>
+                        </th>
+                    </tr>
+                    <th>name</th>
+                    <th>
+                        <%= @artist.name %>
+                    </th>
+                    </tr>
+                    <tr>
+                        <th>introduction</th>
+                        <th>
+                            <%= @artist.explanation %>
+                        </th>
+                    </tr>
+                    <% if @user.id == current_user.id %>
+                    <tr>
+                        <td id="favorite-<%= @artist.id %>">
+                            <%= render partial: "favorite", locals: { artist: @artist } %>
+                        </td>
+                    </tr>
+                    <%end%>
+                </div>
+            </table>
+        </div>
+        <div class="col-xs-9">
+            <div id="calendar"></div>
+        </div>
+    </div>

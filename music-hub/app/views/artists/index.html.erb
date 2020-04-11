@@ -1,0 +1,28 @@
+<div class="container">
+    <h2>アーティスト一覧</h2>
+    <table>
+        <% @artists.each do|artist| %>
+        <div class="row">
+            <div class="col-xs-6">
+                <div class="row">
+                    <div class="col-xs-6">
+                        <%= attachment_image_tag artist,:image, size:"100x100", format: 'jpeg' , fallback: "no_image.jpg"%>
+                    </div>
+                    <div class="col-xs-6">
+                        <table>
+                            <tr>
+                                <th>
+                                    <%= artist.name %>
+                                </th>
+                                <td>
+                                    <%= link_to 'スケジュールを確認する',artist_path(artist) %>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <% end%>
+    </table>
+</div>

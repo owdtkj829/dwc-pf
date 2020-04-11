@@ -3,6 +3,7 @@ class Artist < ApplicationRecord
 	
 	belongs_to :user
 	has_many :schedules
+	has_many :favorites, dependent: :destroy
 
 	validates :name ,presence: true
     validates :explanation ,presence: true
