@@ -38,18 +38,18 @@ $(function() {
             });
             $(document).on('turbolinks:before-cache', clearCalendar);
 
-            //events: '/events.json', 以下に追加
+
             $('#calendar').fullCalendar({
-                events: '/events.json',
+                events: '/schedules.json',
                 //カレンダー上部を年月で表示させる
                 titleFormat: 'YYYY年 M月',
                 //曜日を日本語表示
                 dayNamesShort: ['日', '月', '火', '水', '木', '金', '土'],
                 //ボタンのレイアウト
                 header: {
-                    left: '',
+                    left: 'today prev,next',
                     center: 'title',
-                    right: 'today prev,next'
+                    right: 'month agendaWeek agendaDay'
                 },
                 //終了時刻がないイベントの表示間隔
                 defaultTimedEventDuration: '03:00:00',
@@ -65,13 +65,13 @@ $(function() {
                 },
                 // Drag & Drop & Resize
                 editable: true,
-                //イベントの時間表示を２４時間に
+                //スケジュールの時間表示を２４時間に
                 timeFormat: "HH:mm",
-                //イベントの色を変える
+                //スケジュールの色を変える
                 eventColor: '#87cefa',
-                //イベントの文字色を変える
+                //スケジュールの文字色を変える
                 eventTextColor: '#000000',
-                eventRender: function(event, element) {
+                eventRender: function(schedule, element) {
                     element.css("font-size", "0.8em");
                     element.css("padding", "5px");
                 }

@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   #artistお気に入り登録・解除
   post '/artists/:artist_id/favorites' => "favorites#create"
   delete '/artists/:artist_id/favorites' => "favorites#destroy"
+  get '/users/js/jquery.min.js' => "users#show"
+  get '/users/js/script.js' => "users#show"
 
   resources :users, only: [:show, :create, :update, :destroy]
   resources :artists
