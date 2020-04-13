@@ -1,0 +1,38 @@
+<div class="container">
+    <div class="row">
+        <h3>おすすめ詳細</h3>
+        <div class="col-xs-3">
+            <h2>コメント</h2>
+            <%= form_for(@comment, url: artist_recommend_comments_path(@artist.id, @recommend.id),method: :post) do |f| %>
+            <div class="col-xs-12">
+                <%= f.text_area :comment, class: "col-xs-12" %>
+            </div>
+            <div class="actions">
+                <%= f.submit "送信", class: "col-xs-12"%>
+            </div>
+            <% end %>
+        </div>
+        <div class="col-xs-12">
+            <table>
+                <<thead>
+                    <tr>
+                        <%= link_to user_path(@recommend.user.id) do %>
+                        <%= attachment_image_tag @recommend.user, :image, size:"50x50", format: 'jpeg' , fallback: "no_image.jpg"%><br>
+                        <%= @reccomend.user.name %>
+                        <% end %>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <% @comments.each do |comment| %>
+                        <p>
+                            <%= comment.user.name%>
+                        </p>
+                        <p>コメント：
+                            <%= comment.comment %>
+                        </p>
+                        <% end %>
+                    </tbody>
+            </table>
+        </div>
+    </div>
+</div>

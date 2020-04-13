@@ -1,0 +1,56 @@
+<div class="container">
+    <div class="row">
+        <h3>みんなのおすすめ</h3>
+        <div class="col-xs-3">
+            <h2>おすすめ作成</h2>
+            <%= form_for(@recommend, url: artist_recommends_path(@artist),method: :post) do |f| %>
+            <div>
+                <h4>アーティスト</h4>
+                <%= f.text_field :artistname, class: "col-xs-12" %>
+            </div>
+            <div>
+                <h4>ミュージック</h4>
+                <%= f.text_field :song ,class: 'col-xs-12'%>
+            </div>
+            <div>
+                <h4>MusicVideo URL</h4>
+                <%= f.text_field :url ,class: 'col-xs-12'%>
+            </div>
+            <div>
+                <h4>説明</h4>
+                <%= f.text_area :explanation ,class: 'col-xs-12'%>
+            </div>
+            <div>
+                <%= f.submit ' 投稿 ',class: 'btn btn-primary col-xs-12' %>
+            </div>
+            <% end %>
+        </div>
+        <div class="col-xs-12">
+            <tbody>
+                <% @recommends.each do |recommend| %>
+                <tr>
+                    <th>
+                        <%= link_to user_path(recommend.user) do %>
+                        <%= recommend.user.name%>
+                        <% end %>
+                    </th>
+                    <th>
+                        <h5>アーティスト</h5>
+                        <%= recommend.artistname %>
+                    </th>
+                    <th>
+                        <h5>曲</h5>
+                        <%= recommend.song %>
+                    </th>
+                    <th id="myrecommends-<%= (recommend.id) %>">
+                        <%= render partial: "myrecommend", locals: { recommend: recommend, artist: @artist} %>
+                    </th>
+                    <th>
+                        <%= link_to "詳細", artist_recommend_path(@artist,recommend.id),class: "class: 'btn btn-primary col-xs-2"%>
+                    </th>
+                </tr>
+                <% end %>
+            </tbody>
+        </div>
+    </div>
+</div>
