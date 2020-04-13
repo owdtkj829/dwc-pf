@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_11_071141) do
+ActiveRecord::Schema.define(version: 2020_04_13_053655) do
 
   create_table "artists", force: :cascade do |t|
     t.string "name"
@@ -23,12 +23,38 @@ ActiveRecord::Schema.define(version: 2020_04_11_071141) do
     t.integer "user_id"
   end
 
+  create_table "comments", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "recommend_id"
+    t.text "comment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "favorites", force: :cascade do |t|
     t.integer "user_id"
     t.integer "artist_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "name"
+  end
+
+  create_table "myrecommends", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "recommend_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "recommends", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "artistname"
+    t.text "song"
+    t.text "url"
+    t.text "explanation"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "artist_id"
   end
 
   create_table "schedules", force: :cascade do |t|
@@ -55,6 +81,7 @@ ActiveRecord::Schema.define(version: 2020_04_11_071141) do
     t.string "userid"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "image_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
