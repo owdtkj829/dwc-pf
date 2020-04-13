@@ -1,9 +1,9 @@
 <% if Favorite.find_by(user_id: current_user.id, artist_id: artist.id) %>
 	<%= link_to "/artists/#{artist.id}/favorites", method: :delete, remote: true do %>
-		<button type="button" class="btn btn-default">お気に入り解除</button>
+		<button type="button" class="btn btn-default col-xs-12">お気に入り解除</button>
 	<% end %>
 <% else %>
 	<%= link_to "/artists/#{artist.id}/favorites", method: :post, remote: true do %>
-		<button type="button" class="btn btn-primary">お気に入り登録</button>
+		<button type="button" class="btn btn-primary col-xs-12">お気に入り登録</button>
 	<% end %>
 <% end %>
