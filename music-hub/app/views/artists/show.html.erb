@@ -2,7 +2,7 @@
     <div class="row">
         <h3>アーティストカレンダー</h3>
         <div class="col-xs-3">
-            <h2>User info</h2>
+            <h2>Artist Info</h2>
             <table class="table">
                 <div class="row">
                     <tr>
@@ -21,10 +21,20 @@
                             <%= @artist.explanation %>
                         </th>
                     </tr>
-                    <% if @user.id == current_user.id %>
                     <tr>
                         <td id="favorite-<%= @artist.id %>">
                             <%= render partial: "favorite", locals: { artist: @artist } %>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <%= link_to 'みんなのおすすめへ', artist_recommends_path(@artist.id), class:"btn btn-success col-xs-12"%>
+                        </td>
+                    </tr>
+                    <% if @user.id == current_user.id %>
+                    <tr>
+                        <td>
+                            <%= link_to '編集', edit_artist_path(@artist.id), class:"btn btn-success col-xs-12"%>
                         </td>
                     </tr>
                     <%end%>
