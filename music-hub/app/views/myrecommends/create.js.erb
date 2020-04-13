@@ -1,0 +1,1 @@
+$("#myrecommend-<%= @recommend.id %>").html("<%= j(render partial: 'recommends/myrecommend', locals: { recommend: @recommend, artist: @artist }) %>");
