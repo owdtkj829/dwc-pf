@@ -1,0 +1,31 @@
+<div class="container">
+    <div class="row">
+        <div class="col-xs-10 col-xs-offset-1">
+            <p id="notice">
+                <%= notice %>
+            </p>
+            <p class="devise-title-sm-login">レコメンドお気に入り一覧</p>
+            <div class="col-xs-8 col-xs-offset-2">
+                <%= @myrecommends.each do |myrecommend| %>
+                <div class="form-group">
+                    <table class="table devise-table">
+                        <tr>
+                            <th class="col-xs-3">
+                                <%= attachment_image_tag myrecommend.user,:image,size:"40x40",fallback: "no_image.jpg"%><br>
+                                <%= myrecommend.user.name%>
+                            </th>
+                            <td>
+                                <%= myrecommend.recommend.artistname %><br>
+                                <%= myrecommend.recommend.song %>
+                            </td>
+                            <td>
+                                <%= link_to "詳細",artist_recommend %>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <% end %>
+            </div>
+        </div>
+    </div>
+</div>

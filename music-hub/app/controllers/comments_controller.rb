@@ -1,17 +1,17 @@
 class CommentsController < ApplicationController
 	def create
-	    @recommend = Recommend.find(params[:id])
+	    @recommend = Recommend.find(params[:recommend_id])
 	    @comment = @recommend.comments.build(comment_params)
 	    @comment.user_id = current_user.id
 	    if @comment.save
-     		render :show
+	    redirect_back(fallback_location: root_path)
     	end
 	end
 
 	def destroy
 		@comment = Comment.find(params[:id]) 
     	if @comment.destroy
-      		render :show
+      		redirect_back(fallback_location: root_path)
     	end
 	end
 

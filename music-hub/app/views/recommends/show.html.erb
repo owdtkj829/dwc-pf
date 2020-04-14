@@ -8,31 +8,73 @@
                 <%= f.text_area :comment, class: "col-xs-12" %>
             </div>
             <div class="actions">
-                <%= f.submit "送信", class: "col-xs-12"%>
+                <%= f.submit "送信", class: "btn btn-default col-xs-12"%>
             </div>
             <% end %>
         </div>
-        <div class="col-xs-12">
-            <table>
-                <<thead>
-                    <tr>
-                        <%= link_to user_path(@recommend.user.id) do %>
-                        <%= attachment_image_tag @recommend.user, :image, size:"50x50", format: 'jpeg' , fallback: "no_image.jpg"%><br>
-                        <%= @reccomend.user.name %>
-                        <% end %>
-                    </tr>
-                    </thead>
-                    <tbody>
-                        <% @comments.each do |comment| %>
-                        <p>
-                            <%= comment.user.name%>
-                        </p>
-                        <p>コメント：
-                            <%= comment.comment %>
-                        </p>
-                        <% end %>
-                    </tbody>
-            </table>
+        <div class="col-xs-9">
+            <div class="row">
+                <div class="col-xs-3">
+                    <%= link_to user_path(@recommend.user.id) do %>
+                    <%= attachment_image_tag @recommend.user, :image, size:"100x100", format: 'jpeg' , fallback: "no_image.jpg"%>
+                    <h4>
+                        <%= @recommend.user.name %>
+                    </h4>
+                    <% end %>
+                </div>
+                <div class="col-xs-9 recommendtitle">
+                    <table>
+                        <tr>
+                            <th>
+                                <h4>アーティスト名</h4>
+                            </th>
+                            <td>
+                                <h4 align="center">
+                                    <%= @recommend.artistname %>
+                                </h4>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                <h4>曲名</h4>
+                            </th>
+                            <td>
+                                <h4 align="center">
+                                    <%= @recommend.song %>
+                                </h4>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                <h4>URL</h4>
+                            </th>
+                            <td>
+                                <h4 align="center">
+                                    <%= text_url_to_link(h(@recommend.url)).html_safe %>
+                                </h4>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div><br>
+            <div class="col-xs-9">
+                <% @comments.each do |comment| %>
+                <div class="col-xs-3">
+                    <%= link_to user_path(comment.user.id) do %>
+                    <%= attachment_image_tag comment.user, :image, size:"50x50", format: 'jpeg' , fallback: "no_image.jpg"%>
+                    <h4>
+                        <%= comment.user.name %>
+                    </h4>
+                    <% end %>
+                </div>
+                <h4>
+                    <%= comment.comment %>
+                </h4>
+                <% if @user.id == current_user.id %>
+                <%= link_to "削除", artist_recommend_comment_path(@artist.id,@recommend.id,comment.id), method: :delete,class: "btn btn-danger col-xs-5"%>
+                <% end %>
+                <% end %>
+            </div>
         </div>
     </div>
 </div>
