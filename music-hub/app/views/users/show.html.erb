@@ -1,44 +1,120 @@
-<div class="container">
-    <div class="row">
-        <h3>マイカレンダー</h3>
-        <div class="col-xs-3">
-            <h2>新規スケジュール</h2>
-            <%= form_for(@schedule) do |f| %>
-            <div>
-                <h5>アーティスト</h5>
-                <%= collection_select :artist_schedule, :id, @favorite, :artist_id, :name%>
+<div class="wrap">
+    <ul id="tab-menu" class="clearfix">
+        <li><a href="#mypage" class="active">マイページ</a></li>
+        <li><a href="#mycalendar" class="">マイカレンダー</a></li>
+    </ul>
+    <div id="tab-contents" class="clearfix">
+        <div id="mypage" class="tab">
+            <div class="container">
+                <div class="col-xs-6">
+                    <div class="row">
+                        <table>
+                            <tr>
+                                <th class="col-xs-1">
+                                    <%= attachment_image_tag @user, :image, size:"120x120",fallback: "no_image.jpg", id: "file-preview" %>
+                                </th>
+                                <th class="col-xs-8" align="center">
+                                    <h2>
+                                        <%= @user.name%>
+                                    </h2>
+                                </th>
+                                <th class="col-xs-3">
+                                    <% if @user.id == current_user.id %>
+                                        <%= link_to "プロフィールを編集", edit_user_path(@user),class: "btn btn-default col-xs-12"%>
+                                    <% else %>
+                                        <% if current_user.following?(@user) %>
+                                            <%= form_for(current_user.relationships.find_by(follow_id: @user.id), html: { method: :delete }) do |f| %>
+                                                <%= hidden_field_tag :follow_id, @user.id %>
+                                                <%= f.submit 'Unfollow', class: "btn btn-default col-xs-12" %>
+                                            <% end %>
+                                        <% else %>
+                                            <%= form_for(current_user.relationships.build) do |f| %>
+                                                <%= hidden_field_tag :follow_id, @user.id %>
+                                                <%= f.submit 'Follow', class: "btn btn-default col-xs-12" %>
+                                            <% end %>
+                                        <% end %>
+                                    <% end %>
+                                </th>
+                            </tr>
+                            <tr>
+                                <td class="col-xs-12">
+                                    <%= @user.introduction %>
+                                </td>
+                                <td class="col-xs-12">data</td>
+                            </tr>
+                        </table>
+                        <table>
+                            <tr>
+                                <%= link_to "お気に入り一覧", favorites_path(@user),class: "btn btn-default col-xs-12" %>
+                            </tr>
+                            <tr>
+                                <%= link_to "マイアーティスト一覧", myrecommends_path(@user),class: "btn btn-default col-xs-12" %>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col-xs-6">
+                        <div></div>
+                    </div>
+                </div>
             </div>
-            <div>
-                <h5>開始</h5>
-                <%= f.datetime_field :start ,class: 'col-xs-12'%>
-            </div>
-            <div>
-                <h5>終了</h5>
-                <%= f.datetime_field :finish ,class: 'col-xs-12'%>
-            </div>
-            <div>
-                <h5>シェア</h5>
-                <%= f.select :share, [["シェアする", "シェアする"], ["シェアしない", "シェアしない"]], {include_blank: "選択して下さい"}, {class: 'form-control'} %>
-            </div>
-            <div>
-                <h5>場所</h5>
-                <%= f.text_field :venue ,class: 'col-xs-12'%>
-            </div>
-            <div>
-                <h5>URL</h5>
-                <%= f.url_field :url ,class: 'col-xs-12'%>
-            </div><br>
-            <div>
-                <h5>メモ</h5>
-                <%= f.text_area :memo ,class: 'col-xs-12'%>
-            </div>
-            <div>
-                <%= f.submit ' 追加 ',class: 'btn btn-primary col-xs-12' %>
-            </div>
-            <% end %>
         </div>
-        <div class="col-xs-9">
-            <div id="calendar"></div>
+        <div id="mycalendar" class="tab">
+            <div class="container">
+                <div class="row">
+                    <h3>マイカレンダー</h3>
+                    <div class="col-xs-3">
+                        <h2>新規スケジュール</h2>
+                        <%= form_for(@schedule) do |f| %>
+                        <div>
+                            <h5>アーティスト</h5>
+                            <%= collection_select :artist_schedule, :id, @favorites, :artist_id, :name, class: 'form-control'%>
+                        </div>
+                        <div>
+                            <h5>開始</h5>
+                            <%= f.datetime_field :start ,class: 'col-xs-12'%>
+                        </div>
+                        <div>
+                            <h5>終了</h5>
+                            <%= f.datetime_field :finish ,class: 'col-xs-12'%>
+                        </div>
+                        <div>
+                            <h5>シェア</h5>
+                            <%= f.select :share, [["シェアする", "シェアする"], ["シェアしない", "シェアしない"]], {include_blank: "選択して下さい"}, {class: 'form-control'} %>
+                        </div>
+                        <div>
+                            <h5>場所</h5>
+                            <%= f.text_field :venue ,class: 'col-xs-12'%>
+                        </div>
+                        <div>
+                            <h5>URL</h5>
+                            <%= f.url_field :url ,class: 'col-xs-12'%>
+                        </div><br>
+                        <div>
+                            <h5>メモ</h5>
+                            <%= f.text_area :memo ,class: 'col-xs-12'%>
+                        </div>
+                        <div>
+                            <%= f.submit ' 追加 ',class: 'btn btn-primary col-xs-12' %>
+                        </div>
+                        <% end %>
+                    </div>
+                    <div class="col-xs-9">
+                        <div id="calendar"></div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
+<!-- タブメニューjavascript -->
+<script>
+$('#tab-contents .tab[id != "mypage"]').hide();
+
+$('#tab-menu a').on('click', function() {
+    $("#tab-contents .tab").hide();
+    $("#tab-menu .active").removeClass("active");
+    $(this).addClass("active");
+    $($(this).attr("href")).show();
+    return false;
+});
+</script>
