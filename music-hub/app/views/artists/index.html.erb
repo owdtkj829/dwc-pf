@@ -1,5 +1,6 @@
 <div class="container">
-    <h2>アーティスト一覧</h2>
+    <h2 class="col-xs-6">アーティスト一覧</h2>
+    <%= link_to "アーティスト新規作成", new_artist_path, class: "btn btn-primary col-xs-2 artist-new"%>
     <table>
         <% @artists.each do|artist| %>
         <div class="row">

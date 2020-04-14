@@ -1,8 +1,7 @@
 <div class="container">
     <div class="row">
-        <h3>アーティストカレンダー</h3>
         <div class="col-xs-3">
-            <h2>Artist Info</h2>
+            <h2>アーティスト情報</h2>
             <table class="table">
                 <div class="row">
                     <tr>
@@ -34,7 +33,9 @@
                     <% if @user.id == current_user.id %>
                     <tr>
                         <td>
+                            <% if @artist.user_id == current_user.id%>
                             <%= link_to '編集', edit_artist_path(@artist.id), class:"btn btn-success col-xs-12"%>
+                            <% end %>
                         </td>
                     </tr>
                     <%end%>
@@ -42,6 +43,6 @@
             </table>
         </div>
         <div class="col-xs-9">
-            <div id="calendar"></div>
+            <div id="artistcalendar"></div>
         </div>
     </div>
