@@ -1,13 +1,14 @@
 class SchedulesController < ApplicationController
 	
 	def index
-		@schedules = Schedule.where(user_id: current_user.id)
+		@schedules = Schedule.where(artist_id: params[:artist_id])
+		@artist = Artist.find(params[:artist_id])
 	end
 
 	def show
-		@schedule = Schedule.find(params[:id])
-		params[:artistid] = @schedule.artist_id
-		@artist = Artist.find(params[:artistid])
+		@schedule
+		@schedules = Schedule.where(artist_id: params[:artist_id])
+		@artist = Artist.find(params[:artist_id])
 	end
 
 	def create

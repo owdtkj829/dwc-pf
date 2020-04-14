@@ -1,5 +1,27 @@
 <div class="container">
     <div class="row">
+        <h3>アーティストカレンダー</h3>
+        <div class="col-xs-3">
+            <h2>アーティストスケジュール</h2>
+            <div>
+                <h5>アーティスト</h5>
+                <%= attachment_image_tag @artist,:image,size:"40x40",fallback: "no_image.jpg"%><br>
+                <%= @artist.name%>
+            </div>
+            <div>
+                <%= @artist.explanation %>
+            </div>
+            <div>
+                <% if @artist.user_id == current_user.id %>
+                <%= link_to "編集" ,edit_artist_path(@artist.id), class: 'btn btn-primary col-xs-12'%>
+                <% end %>
+            </div>
+            <div>
+                <td id="favorite-<%= @artist.id %>">
+                    <%= render partial: "favorite", locals: { artist: @artist } %>
+                </td>
+            </div>
+        </div>
         <div class="col-xs-9">
             <div id="calendar"></div>
         </div>
