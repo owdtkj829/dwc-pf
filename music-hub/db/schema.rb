@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_13_053655) do
+ActiveRecord::Schema.define(version: 2020_04_14_045822) do
 
   create_table "artists", force: :cascade do |t|
     t.string "name"
@@ -57,6 +57,16 @@ ActiveRecord::Schema.define(version: 2020_04_13_053655) do
     t.integer "artist_id"
   end
 
+  create_table "relationships", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "follow_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["follow_id"], name: "index_relationships_on_follow_id"
+    t.index ["user_id", "follow_id"], name: "index_relationships_on_user_id_and_follow_id", unique: true
+    t.index ["user_id"], name: "index_relationships_on_user_id"
+  end
+
   create_table "schedules", force: :cascade do |t|
     t.integer "user_id"
     t.integer "artist_id"
@@ -78,10 +88,10 @@ ActiveRecord::Schema.define(version: 2020_04_13_053655) do
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.string "name"
-    t.string "userid"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "image_id"
+    t.text "introduction"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
