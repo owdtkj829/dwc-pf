@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 1
+  artist_id: 1
+  favorite_id: 1
+  venue: MyText
+  start: 2020-04-15 02:44:21
+  finish: 2020-04-15 02:44:21
+  share: 1
+  url: MyText
+  memo: MyText
+  created_at: 2020-04-15 02:44:21
+  updated_at: 2020-04-15 02:44:21
+
+two:
+  user_id: 1
+  artist_id: 1
+  favorite_id: 1
+  venue: MyText
+  start: 2020-04-15 02:44:21
+  finish: 2020-04-15 02:44:21
+  share: 1
+  url: MyText
+  memo: MyText
+  created_at: 2020-04-15 02:44:21
+  updated_at: 2020-04-15 02:44:21
