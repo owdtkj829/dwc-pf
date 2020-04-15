@@ -1,48 +1,92 @@
 <div class="container">
     <div class="row">
         <div class="col-xs-3">
-            <h2>アーティスト情報</h2>
-            <table class="table">
-                <div class="row">
-                    <tr>
-                        <th>
-                            <%= attachment_image_tag @artist, :image,size:"100x100", fallback: "no_image.jpg" %>
-                        </th>
-                    </tr>
-                    <th>name</th>
-                    <th>
-                        <%= @artist.name %>
-                    </th>
-                    </tr>
-                    <tr>
-                        <th>introduction</th>
-                        <th>
-                            <%= @artist.explanation %>
-                        </th>
-                    </tr>
-                    <tr>
-                        <td id="favorite-<%= @artist.id %>">
-                            <%= render partial: "favorite", locals: { artist: @artist } %>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <%= link_to 'みんなのおすすめへ', artist_recommends_path(@artist.id), class:"btn btn-success col-xs-12"%>
-                        </td>
-                    </tr>
-                    <% if @user.id == current_user.id %>
-                    <tr>
-                        <td>
-                            <% if @artist.user_id == current_user.id%>
-                            <%= link_to '編集', edit_artist_path(@artist.id), class:"btn btn-success col-xs-12"%>
-                            <% end %>
-                        </td>
-                    </tr>
-                    <%end%>
-                </div>
-            </table>
+            <h2 align="center">アーティスト情報</h2>
+            <div class="col-xs-6">
+                <%= attachment_image_tag @artist, :image,size:"120x120", fallback: "no_image.jpg" %>
+            </div>
+            <div class="col-xs-6" align="center">
+                <h4><%= @artist.name %></h4>
+            </div>
+            <div class="col-xs-12 artist-explanation">
+                <strong>アーティスト情報</strong><br><br>
+                <%= @artist.explanation %>
+            </div>
+            <div class="col-xs-12 artist-btn" id="favorite-<%= @artist.id %>">
+                <%= render partial: "favorite", locals: { artist: @artist } %>
+            </div>
+            <div class="col-xs-12 artist-btn">
+                <%= link_to 'みんなのおすすめへ', artist_recommends_path(@artist.id), class:"btn btn-success col-xs-12"%>
+            </div>
+            <div class="col-xs-12 artist-btn">
+                <% if @artist.user_id == current_user.id%>
+                <%= link_to '編集', edit_artist_path(@artist.id), class:"btn btn-success col-xs-12"%>
+                <% end %>
+            </div>
         </div>
         <div class="col-xs-9">
-            <div id="artistcalendar"></div>
+            <div id="calendar"></div>
         </div>
     </div>
+</div>
+<script>
+$(function() {
+    // 画面遷移を検知
+    $(document).on('turbolinks:load', function() {
+        if ($('#calendar').length) {
+
+            function Calendar() {
+                return $('#calendar').fullCalendar({});
+            }
+
+            function clearCalendar() {
+                $('#calendar').html('');
+            }
+
+            $(document).on('turbolinks:load', function() {
+                eventCalendar();
+            });
+            $(document).on('turbolinks:before-cache', clearCalendar);
+
+
+            $('#calendar').fullCalendar({
+                events: '/events_artist.json',
+                //カレンダー上部を年月で表示させる
+                titleFormat: 'YYYY年 M月',
+                //曜日を日本語表示
+                dayNamesShort: ['日', '月', '火', '水', '木', '金', '土'],
+                //ボタンのレイアウト
+                header: {
+                    left: 'today prev,next',
+                    center: 'title',
+                    right: 'month agendaWeek agendaDay'
+                },
+                //終了時刻がないイベントの表示間隔
+                defaultTimedEventDuration: '03:00:00',
+                buttonText: {
+                    prev: '前',
+                    next: '次',
+                    prevYear: '前年',
+                    nextYear: '翌年',
+                    today: '今日',
+                    month: '月',
+                    week: '週',
+                    day: '日'
+                },
+                // Drag & Drop & Resize
+                editable: true,
+                //スケジュールの時間表示を２４時間に
+                timeFormat: "HH:mm",
+                //スケジュールの色を変える
+                eventColor: '#87cefa',
+                //スケジュールの文字色を変える
+                eventTextColor: '#000000',
+                eventRender: function(event, element) {
+                    element.css("font-size", "0.8em");
+                    element.css("padding", "5px");
+                }
+            });
+        }
+    });
+});
+</script>

@@ -7,7 +7,7 @@ class ArtistsController < ApplicationController
 	def show
 		@artist = Artist.find(params[:id])
 		@user = current_user
-		@schedules = Schedule.where(artist_id: params[:id])
+		@events = Event.where(artist_id: params[:id])
 	end
 
 	def new
