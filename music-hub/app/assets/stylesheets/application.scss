@@ -20,7 +20,7 @@
  @import "tempusdominus-bootstrap-4.css";
 
 .headerlogo{
-	margin: 0px;
+	margin-top: 15px;
 	object-fit: cover;
 }
 
@@ -28,6 +28,10 @@
 	font-size: 20px;
 }
 
+footer{
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
 
 /* ---------------------------- */
 /* --- ハンバーガーアイコン --- */
@@ -35,9 +39,9 @@
  
 #hm-icon{
   position: fixed;
-  right: 20px;
+  right: 40px;
   top: 20px;
-  z-index: 10;
+  z-index: 20;
 }
  
 .menu-trigger,
