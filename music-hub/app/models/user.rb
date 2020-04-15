@@ -11,7 +11,7 @@ class User < ApplicationRecord
   has_many :artists
 
   #スケジュール機能
-  has_many :schedules, dependent: :destroy
+  has_many :events, dependent: :destroy
 
   #アーティストお気に入り機能
   has_many :favorites, dependent: :destroy

@@ -1,30 +1,33 @@
 <div class="container">
     <div class="row">
+        <div class="col-xs-10 col-xs-offset-1" align="center">
+            <h4>アーティストお気に入り一覧</h4>
+        </div>
+        <div class="col-xs-10 col-xs-offset-1" align="right">
+            <p>ここに検索窓</p>
+        </div>
+    </div>
+    <div class="row">
         <div class="col-xs-10 col-xs-offset-1">
-            <p id="notice">
-                <%= notice %>
-            </p>
-            <p class="devise-title-sm-login">アーティストお気に入り一覧</p>
-            <div class="col-xs-8 col-xs-offset-2">
-                <% @favorites.each do |favorite| %>
-                <div class="form-group">
-                    <table class="table devise-table">
-                        <tr>
-                            <th class="col-xs-3">
-                                <%= attachment_image_tag favorite.artist,:image,size:"100x100",fallback: "no_image.jpg"%><br>
-                                <%= favorite.artist.name%>
-                            </th>
-                            <td>
-                                <%= favorite.artist.name %><br>
-                            </td>
-                            <td>
-                                <%= link_to "スケジュールを確認する",artist_schedules_path(favorite.artist_id),class: "btn btn-default col-xs-7" %>
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-                <% end %>
+            <% @favorites.each do |favorite| %>
+            <div class="form-group">
+                <table class="table devise-table">
+                    <tr>
+                        <th class="col-xs-4">
+                            <%= attachment_image_tag favorite.artist,:image,size:"100x100",fallback: "no_image.jpg"%><br>
+                        </th>
+                        <td class="col-xs-2">
+                            <h4 class="favorite-artist">
+                                <%= favorite.artist.name %>
+                            </h4>
+                        </td>
+                        <td class="col-xs-6" align="right">
+                            <%= link_to "スケジュールを確認する",artist_path(favorite.artist_id),class: "btn btn-default favorite-artist"%>
+                        </td>
+                    </tr>
+                </table>
             </div>
+            <% end %>
         </div>
     </div>
 </div>
