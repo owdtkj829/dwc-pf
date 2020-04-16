@@ -25,51 +25,31 @@ h1 {
     margin: 50px 0;
 }
 
-.wrap {
-    width: 100%;
-    max-width: 100%;
-    margin: 0 auto;
+.myrecommend-song {
+    font-size: 25px;
+    margin-left: 60px;
 }
 
-.clearfix:after {
-    content: "";
-    clear: both;
-    display: block;
+.myrecommend-artist-name {
+    font-size: 25px;
+    margin-top: 20px;
 }
 
-#tab-menu li {
-    float: left;
-    list-style-type: none;
-    width: 25%;
+.myrecommned-url{
+    font-size: 25px;
+    margin-top: 15px;
 }
 
-#tab-menu a {
-    color: #fff;
-    text-decoration: none;
-    display: block;
-    padding: 20px;
-    text-align: center;
-    background: #000;
-    border: 1px solid #000;
-    border-bottom: none;
+.to-comment{
+    font-size: 20px;
+    margin-top: 22px;
+
 }
 
-#tab-menu .active {
-    background: #fff;
-    color: #000;
+.myrecommend-table{
+    margin-top: 10px;
 }
 
-#tab-contents .tab {
-    padding: 30px;
-    background: #fff;
-    border: 1px solid #000;
-    border-top: none;
-}
-
-#tab-contents p {
-    color: #000;
-    line-height: 2.5;
-}
 
 .profile-edit {
     top: 15px;
@@ -90,4 +70,3 @@ h1 {
     border-bottom-width: medium;
     padding-bottom: 30px;
 }
-
