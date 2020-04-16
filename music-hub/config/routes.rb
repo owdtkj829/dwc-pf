@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   resources :users, only: [:index, :show, :edit, :create, :update, :destroy]
 
   resources :artists do
+    get :search, on: :collection
     resources :events,only: [:index, :show]
     resources :recommends,only: [:index, :show, :create, :dastroy] do
       resources :comments,only: [:create, :destroy]

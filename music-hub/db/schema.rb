@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_15_024420) do
+ActiveRecord::Schema.define(version: 2020_04_16_062811) do
 
   create_table "artists", force: :cascade do |t|
     t.string "name"
@@ -58,6 +58,7 @@ ActiveRecord::Schema.define(version: 2020_04_15_024420) do
     t.integer "recommend_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "artist_id"
   end
 
   create_table "recommends", force: :cascade do |t|
