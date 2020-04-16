@@ -38,6 +38,7 @@ class ArtistsController < ApplicationController
 	end
 
 	def search
+      @artists =  params[:search].present? ? Artist.artist_serach(params[:search]) :  Artist.none
 	end
 
 	def time

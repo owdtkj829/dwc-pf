@@ -8,4 +8,8 @@ class Artist < ApplicationRecord
 	validates :name ,presence: true
     validates :explanation ,presence: true
     validates :image ,presence: true
+
+    def self.artist_serach(search)
+    	Artist.where(['name LIKE ?', "%#{search}%"])
+	end
 end
