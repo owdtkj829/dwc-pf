@@ -2,7 +2,66 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.recommendtitle{
-	bottom: 10px;
-	right: 90px;
+.myrecommend-title {
+    border-bottom-style: groove;
+    border-bottom-width: medium;
+    width: 100%;
+}
+
+.comments-area{
+	margin-bottom: 30px;
+}
+
+.comment-box{
+	margin-bottom: 30px;
+}
+
+.recommend-user {
+    margin-top: 15px;
+}
+
+.recommend-artist-name {
+    font-size: 25px;
+    margin-top: 20px;
+}
+
+.recommend-song {
+    font-size: 25px;
+}
+
+.to-comment {
+    font-size: 15px;
+    margin-top: 20px;
+}
+
+.recommend-song-title {
+    margin-bottom: 20px;
+}
+
+.myrecommend-heart {
+    font-size: 25px;
+    margin-top: 20px;
+}
+
+.comment-recommend-artist-name {
+    font-size: 20px;
+    margin-top: 10px;
+}
+
+.comment-recommend-song {
+    font-size: 20px;
+    margin-left: 40px;
+}
+
+.comment-recommend-url {
+    font-size: 20px;
+}
+
+.comment-size {
+    font-size: 20px;
+}
+
+.glyphicon-trash {
+    font-size: 20px;
+    margin-top: 20px;
 }

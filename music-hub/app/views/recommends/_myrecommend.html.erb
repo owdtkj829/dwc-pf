@@ -1,9 +1,9 @@
-<% if Myrecommend.find_by(user_id: current_user.id, recommend_id: recommend.id ) %>
-	<%= link_to "/artists/#{@artist.id}/recommends/#{recommend.id}/myrecommends", method: :delete, remote: true do %>
-	<i class="glyphicon glyphicon-heart" aria-hidden="true"></i>
+<% if Myrecommend.find_by(user_id: current_user.id, artist_id: artist.id, recommend_id: recommend.id ) %>
+	<%= link_to "/artists/#{artist.id}/recommends/#{recommend.id}/myrecommends", method: :delete, remote: true do %>
+		<i class="glyphicon glyphicon-star myrecommend-heart" aria-hidden="true"></i>
 	<% end %>
 <% else %>
-<%= link_to "/artists/#{@artist.id}/recommends/#{recommend.id}/myrecommends", method: :post, remote: true do %>
-<i class="glyphicon glyphicon-heart-empty" aria-hidden="true"></i>
-<% end %>
+	<%= link_to "/artists/#{artist.id}/recommends/#{recommend.id}/myrecommends", method: :post,remote: true do %>
+		<i class="glyphicon glyphicon-star-empty myrecommend-heart" aria-hidden="true"></i>
+	<% end %>
 <% end %>

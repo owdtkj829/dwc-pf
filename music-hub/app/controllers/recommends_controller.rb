@@ -1,5 +1,6 @@
 class RecommendsController < ApplicationController
 	def index
+		@user = current_user.id
 		@artist = Artist.find(params[:artist_id])
 		@recommends = Recommend.where(artist_id: @artist.id)
 		@recommend = Recommend.new
@@ -18,6 +19,9 @@ class RecommendsController < ApplicationController
 		@recommend = Recommend.new(recommend_params)
 		@recommend.user_id = current_user.id
 		@recommend.artist_id = params[:artist_id]
+		@url = params[:recommend][:url]
+    	url = @url.last(11)
+    	@recommend.url = url
 		if @recommend.save
 	       redirect_back(fallback_location: root_path)
     	else
