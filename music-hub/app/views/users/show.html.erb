@@ -40,7 +40,7 @@
                     <%= link_to '>>もっと見る',favorites_path(@user) ,class: "link" %>
                 </p><br>
                 <% @artists.first(2).each do |artist|%>
-                <%= link_to artist_path(artist.id) do%>
+                <%= link_to artist_events_path(artist.id) do%>
                 <div class="col-xs-6">
                     <%= attachment_image_tag artist, :image, size:"120x120", format: 'jpeg' , fallback: "no_image.jpg"%>
                     <%= artist.name%>
