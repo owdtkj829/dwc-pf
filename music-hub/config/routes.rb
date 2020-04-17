@@ -24,11 +24,10 @@ Rails.application.routes.draw do
 
   resources :artists do
     get :search, on: :collection
-    resources :events,only: [:index, :show]
+    resources :events,only: [:index, :create, :destroy, :update]
     resources :recommends,only: [:index, :show, :create, :dastroy] do
       resources :comments,only: [:create, :destroy]
     end
   end
-  resources :events, only: [:create, :destroy, :update]
   resources :relationships, only: [:create, :destroy]
 end

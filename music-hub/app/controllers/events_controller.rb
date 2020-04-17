@@ -4,12 +4,6 @@ class EventsController < ApplicationController
 		@event = Event.where(artist_id: params[:artist_id])
 		@artist = Artist.find(params[:artist_id])
 	end
-	#アーティスト用カレンダーの詳細
-	def show
-		@event = Event.new
-		@events = Event.where(artist_id: params[:id])
-		@artist = Artist.find(params[:id])
-	end
 
 	def create
 		@event = Event.new(event_params)
@@ -30,9 +24,9 @@ class EventsController < ApplicationController
 	end
 
 	def update
-		@event = Event.find(params[:id])
-		@event.update(event_params)
-		redirect_to user_path(current_user)
+		event = Event.find(params[:id])
+        @events = Event.where(user_id: current_user.id)
+        event.update(event_params)
 	end
 
 	#ユーザー用のカレンダー
@@ -42,11 +36,6 @@ class EventsController < ApplicationController
   		@favorites = Favorite.where(user_id: current_user.id)
 		@events = Event.where(user_id: params[:user_id])
  	end
-
-  	#ユーザー用カレンダーの詳細
-  	def user_show
-
-    end
 
     #ユーザーページのカレンダー表示
     def events

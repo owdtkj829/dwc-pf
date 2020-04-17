@@ -1,0 +1,46 @@
+<% events.each do |event| %>
+<div id='inputScheduleEditForm' class="modal fade" tabindex="-1">
+    <div class="modal-dialog modal-nm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">スケジュール編集</h4>
+            </div>
+            <div class="modal-body">
+                <div class="col">
+                    <%= form_with(model: event, url: artist_event_path(event.artist_id, event.id), method: :put) do |f| %>
+                    <p>
+                        <span>アーティスト</span>
+                        <span id="input" value="">
+                            <%= collection_select :artist_event, :id, @favorites, :artist_id, :name, class: 'col-xs-12'%></span>
+                    </p>
+                    <span>開始</span>
+                    <span>
+                        <%= f.datetime_field :start ,class: 'col-xs-12'%></span><br>
+                    <span>終了</span>
+                    <span>
+                        <%= f.datetime_field :finish ,class: 'col-xs-12'%></span>
+                    <span><br>
+                        シェア
+                        <%= f.select :share, [["シェアする", "シェアする"], ["シェアしない", "シェアしない"]], {include_blank: "選択して下さい"}, {class: 'form-control'} %>
+                    </span>
+                    <span>会場</span>
+                    <span>
+                        <%= f.text_field :venue ,class: 'col-xs-12'%></span>
+                    <span>URL</span>
+                    <span>
+                        <%= f.url_field :url ,class: 'col-xs-12'%></span>
+                    <span>メモ</span>
+                    <span>
+                        <%= f.text_area :memo ,class: 'col-xs-12'%></span>
+                    <div class="modal-footer">
+                        <%= f.hidden_field :user_id, :value => current_user.id %>
+                        <%= f.submit "編集する", class: "btn btn-primary" %>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
+                    </div>
+                    <% end %>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<% end %>

@@ -21,7 +21,7 @@
                 <%= f.select :share, [["シェアする", "シェアする"], ["シェアしない", "シェアしない"]], {include_blank: "選択して下さい"}, {class: 'form-control'} %>
             </div>
             <div>
-                <h5>場所</h5>
+                <h5>会場</h5>
                 <%= f.text_field :venue ,class: 'col-xs-12'%>
             </div>
             <div>
@@ -36,6 +36,9 @@
                 <%= f.submit ' 追加 ',class: 'btn btn-primary col-xs-12' %>
             </div>
             <% end %>
+            <div id="inputEditForm">
+                <%= render 'events/edit', events: @events %>
+            </div>
         </div>
         <div class="col-xs-9">
             <div id="calendar"></div>
@@ -90,22 +93,27 @@ $(function() {
                 selectable: true, // 選択可
                 selectHelper: true, // 選択時にプレースホルダーを描画
                 ignoreTimezone: false, // 自動選択解除
+                navLinks: true,
                 //スケジュールの時間表示を２４時間に
                 timeFormat: "HH:mm",
                 //スケジュールの色を変える
                 eventColor: '#87cefa',
                 //スケジュールの文字色を変える
                 eventTextColor: '#000000',
-                eventClick: function(event) { //イベントをクリックしたときに実行
 
-                    var show_url = "/artists/" + 1 + "/events/" + 1
-                    location.href = show_url;
+                // event クリックで編集、削除
+                eventClick: function(calEvent, jsEvent, view) {
+                    jsEvent.preventDefault();
+                    $('#event_id').html(calEvent.id);
+                    $(`#inputScheduleEditForm$`).modal('show');
                 },
 
-                eventRender: function(event, element) {
-                    element.css("font-size", "0.8em");
-                    element.css("padding", "5px");
+                eventMouseover: function(event, jsEvent, view) {
+                    jsEvent.preventDefault();
                 },
+
+
+
 
             });
         }
