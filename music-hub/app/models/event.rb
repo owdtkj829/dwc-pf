@@ -4,13 +4,5 @@ class Event < ApplicationRecord
 	belongs_to :artist
 
 	#スケジュールをシェアするかしないか
-	def if_share
-		yuukou = "シェアする"
-		mukou = "シェアしない"
-		if true == share
-			yuukou
-		else
-			mukou
-		end
-	end
+	enum share: { シェアする:0, シェアしない:1 }
 end

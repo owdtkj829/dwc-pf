@@ -1,10 +1,10 @@
 class EventsController < ApplicationController
-
+	#アーティスト用のカレンダー
 	def index
 		@event = Event.where(artist_id: params[:artist_id])
 		@artist = Artist.find(params[:artist_id])
 	end
-
+	#アーティスト用カレンダーの詳細
 	def show
 		@event = Event.new
 		@events = Event.where(artist_id: params[:id])
@@ -18,8 +18,8 @@ class EventsController < ApplicationController
 		@event.artist_id = @event_artist.id
 	  	respond_to do |format|
 	         @event.save
-	  	      format.html { redirect_to user_path(current_user.id)}
-	          format.json { render :events , status: :created, location: @event }
+	  	      format.html { redirect_back(fallback_location: root_path)}
+	          format.json { render :events , status: :created, location: @events }
     	end
 	end
 
@@ -38,9 +38,9 @@ class EventsController < ApplicationController
 	#ユーザー用のカレンダー
   	def user_index
   		@event = Event.new
-  		@user = User.find(current_user.id)
+  		@user = User.find(params[:user_id])
   		@favorites = Favorite.where(user_id: current_user.id)
-		@events = Event.where(user_id: current_user.id)
+		@events = Event.where(user_id: params[:user_id])
  	end
 
   	#ユーザー用カレンダーの詳細
@@ -48,26 +48,28 @@ class EventsController < ApplicationController
 
     end
 
+    #ユーザーページのカレンダー表示
     def events
-    	@event = Event.where(user_id: current_user.id)
+    	@events = Event.where(user_id: params[:user_id])
     	# render :json => @event
 	    respond_to do |format|
 	      format.json {
 	        render json:
-	        @event.to_json(
-	          only: [:artist_id, :venue, :start, :finish, :share, :url, :memo]
+	        @events.to_json(
+	          only: [:artist_id, :venue, :start, :finish, :memo]
 	        )
 	      }
 	   	end
     end
 
+    #アーティストページのカレンダー表示
     def event
-    	@event = Event.where(artist_id: params[:artist_id])
+    	@event = Event.where(artist_id: params[:artist_id],share: 0)
 	    respond_to do |format|
 	      format.json {
 	        render json:
 	        @event.to_json(
-	          only: [:artist_id, :venue, :start, :finish, :share, :url, :memo]
+	          only: [:artist_id, :venue, :start, :finish,  :memo, :share]
 	        )
 	      }
 	   	end
@@ -78,6 +80,6 @@ class EventsController < ApplicationController
     	params.require(:artist_event).permit(:id)
   	end
 	def event_params
-		params.require(:event).permit(:artist_id, :venue, :start, :finish, :share, :url, :memo)
+		params.require(:event).permit(:venue, :start, :finish, :share, :url, :memo)
 	end
 end

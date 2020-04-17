@@ -11,7 +11,6 @@
                 </h4>
             </div>
             <div class="col-xs-12 artist-explanation">
-                <strong>アーティスト情報</strong><br><br>
                 <%= @artist.explanation %>
             </div>
             <div class="col-xs-12 artist-btn" id="favorite-<%= @artist.id %>">
@@ -51,8 +50,8 @@ $(function() {
             $(document).on('turbolinks:before-cache', clearCalendar);
 
             $('#calendar').fullCalendar({
-
-                events: '/events_artist.json',
+                //events.jsonを参照させる（getの際にパラメータとして@user.idを持たせる）
+                events: '/events_artist.json?artist_id=<%=@artist.id%>',
                 //カレンダー上部を年月で表示させる
                 titleFormat: 'YYYY年 M月',
                 //曜日を日本語表示
@@ -75,20 +74,6 @@ $(function() {
                     week: '週',
                     day: '日'
                 },
-                // 日付クリック
-                dayClick: function(date, jsEvent, view) {
-                    $('#inputScheduleForm').modal('show');
-                },
-
-                // event クリックで編集、削除
-                eventClick: function(event, jsEvent, view) {
-                    jsEvent.preventDefault();
-                    $(`#inputScheduleEditForm${event.id}`).modal('show');
-                },
-
-                eventMouseover: function(event, jsEvent, view) {
-                    jsEvent.preventDefault();
-                },
                 // Drag & Drop & Resize
                 editable: true,
                 //スケジュールの時間表示を２４時間に
@@ -97,10 +82,12 @@ $(function() {
                 eventColor: '#87cefa',
                 //スケジュールの文字色を変える
                 eventTextColor: '#000000',
+                
                 eventRender: function(event, element) {
                     element.css("font-size", "0.8em");
                     element.css("padding", "5px");
                 }
+
             });
         }
     });

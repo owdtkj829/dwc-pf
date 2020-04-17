@@ -6,7 +6,7 @@
             <%= form_for(@event) do |f| %>
             <div>
                 <h5>アーティスト</h5>
-                <%= collection_select :artist_event, :id, @favorites, :artist_id, :name, class: 'form-control'%>
+                <%= collection_select :artist_event, :id, @favorites, :artist_id, :name, class: 'col-xs-12'%>
             </div>
             <div>
                 <h5>開始</h5>
@@ -62,10 +62,9 @@ $(function() {
             });
             $(document).on('turbolinks:before-cache', clearCalendar);
 
-
             $('#calendar').fullCalendar({
-                //eventsテーブルの値を返す記述
-                events: '/events.json',
+                //events.jsonを参照させる（getの際にパラメータとして@user.idを持たせる）
+                events: '/events.json?user_id=<%=@user.id%>',
                 //カレンダー上部を年月で表示させる
                 titleFormat: 'YYYY年 M月',
                 //曜日を日本語表示
@@ -88,18 +87,26 @@ $(function() {
                     week: '週',
                     day: '日'
                 },
-                // Drag & Drop & Resize
-                editable: true,
+                selectable: true, // 選択可
+                selectHelper: true, // 選択時にプレースホルダーを描画
+                ignoreTimezone: false, // 自動選択解除
                 //スケジュールの時間表示を２４時間に
                 timeFormat: "HH:mm",
                 //スケジュールの色を変える
                 eventColor: '#87cefa',
                 //スケジュールの文字色を変える
                 eventTextColor: '#000000',
+                eventClick: function(event) { //イベントをクリックしたときに実行
+
+                    var show_url = "/artists/" + 1 + "/events/" + 1
+                    location.href = show_url;
+                },
+
                 eventRender: function(event, element) {
                     element.css("font-size", "0.8em");
                     element.css("padding", "5px");
-                }
+                },
+
             });
         }
     });
