@@ -77,3 +77,4 @@ gem 'kaminari','~> 1.1.1'
 gem 'momentjs-rails'
 gem "bootstrap4-datetime-picker-rails"
 gem 'fullcalendar-rails'
+gem 'jquery-ui-rails'
