@@ -31,7 +31,9 @@
             </div>
             <%= link_to "お気に入りアーティスト一覧", favorites_path(@user),class: "btn btn-default col-xs-12 profile-button" %>
             <%= link_to "お気に入り曲一覧", myrecommends_path(@user),class: "btn btn-default col-xs-12 profile-button" %>
+            <% if @user.id == current_user.id %>
             <%= link_to "マイカレンダー", user_events_path(current_user),class: "btn btn-default col-xs-12 profile-button" %>
+            <% end %>
         </div>
         <div class="col-xs-6">
             <div class="col-xs-12 profile-border">

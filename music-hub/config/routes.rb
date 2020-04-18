@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
   devise_for :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  root :to => 'home#tops'
-  get '/about' => 'home#about'
-  get 'events', to: 'events#events'
-  get 'events_artist', to: 'events#event'
+  root :to => 'homes#tops'
+  get '/about' => 'homes#about'
+  get 'events', to: 'events#events', as: 'user_calendar'
+  get 'events_artist', to: 'events#event', as: 'artist_calendar'
 
   #artistお気に入り登録・解除
   post '/artists/:artist_id/favorites' => "favorites#create"
@@ -29,5 +29,7 @@ Rails.application.routes.draw do
       resources :comments,only: [:create, :destroy]
     end
   end
+
+  resources :events, only: [:create]
   resources :relationships, only: [:create, :destroy]
 end

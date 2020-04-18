@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_16_062811) do
+ActiveRecord::Schema.define(version: 2020_04_18_105711) do
 
   create_table "artists", force: :cascade do |t|
     t.string "name"
@@ -37,12 +37,13 @@ ActiveRecord::Schema.define(version: 2020_04_16_062811) do
     t.integer "favorite_id"
     t.text "venue"
     t.datetime "start"
-    t.datetime "finish"
+    t.datetime "end"
     t.integer "share"
     t.text "url"
     t.text "memo"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "title"
   end
 
   create_table "favorites", force: :cascade do |t|

@@ -1,0 +1,61 @@
+<% events.each do |event| %>
+<div id='inputScheduleEditForm<%= event.id %>' class="modal fade" tabindex="-1">
+    <div class="modal-dialog modal-nm">
+        <div class="modal-content">
+            <div class="row artist-event-edit">
+                <h3 class="modal-title" align="center">スケジュール</h3>
+            </div>
+            <%= form_for(@event) do |f| %>
+            <div class="col-xs-12">
+                <p>アーティスト：
+                    <%= event.artist.name%>
+                </p>
+                <%= hidden_field :artist_event, :id, :value => event.artist_id %>
+            </div>
+            <div class="col-xs-12">
+                <p>タイトル：
+                    <%= event.title%>
+                </p>
+                <%= f.hidden_field :title, :value => event.title %>
+            </div>
+            <div class="col-xs-12">
+                <p>開始：
+                    <%= event.start%>
+                </p>
+                <%= f.hidden_field :start, :value => event.start %>
+            </div>
+            <div class="col-xs-12">
+                <p>
+                    終了：
+                    <%= event.end%>
+                    <%= f.hidden_field :end, :value => event.end %>
+                </p>
+                <%= f.hidden_field :share, :value => "シェアしない" %>
+            </div>
+            <div class="col-xs-12">
+                <p>会場：
+                    <%= event.venue%>
+                </p>
+                <%= f.hidden_field :venue, :value => event.venue %>
+            </div>
+            <div class="col-xs-12">
+                <p>URL：
+                    <%= event.url%>
+                </p>
+                <%= f.hidden_field :url, :value => event.url %>
+            </div>
+            <div class="col-xs-12">
+                <p>メモ：
+                    <%= event.memo%>
+                </p>
+                <%= f.hidden_field :memo, :value => event.memo %>
+            </div>
+            <div class="modal-footer">
+                <%= f.submit "登録する", class: "btn btn-primary"%>
+                <button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
+            </div>
+            <% end %>
+        </div>
+    </div>
+</div>
+<% end %>

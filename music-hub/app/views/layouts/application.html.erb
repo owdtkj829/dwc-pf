@@ -16,7 +16,7 @@
                 <% if user_signed_in? %>
                 <!--if文でログイン時とログアウト時の表示を変更-->
                 <nav class="nav navbar-nav navbar-left">
-                    <%= link_to image_tag('musichub.jpg', class: 'headerlogo'), root_path %>
+                    <%= link_to image_tag('logo.png',  class: 'headerlogo'), root_path %>
                 </nav>
                 <div id="sp-menu">
                     <ul class="nav nav-pills navbar-right">
@@ -44,7 +44,7 @@
                 <% else %>
                 <nav class="nav navbar-nav navbar-left">
                     <h2 class="titlelogo">
-                        <%= link_to image_tag('musichub.jpg', class: 'headerlogo'), root_path %>
+                        <%= link_to image_tag('logo.png', class: 'headerlogo'), root_path %>
                     </h2>
                 </nav>
                 <div id="sp-menu">
