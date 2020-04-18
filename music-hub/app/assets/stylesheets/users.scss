@@ -70,3 +70,84 @@ h1 {
     border-bottom-width: medium;
     padding-bottom: 30px;
 }
+
+
+// オーバーレイ
+.overlay {
+  z-index: 9999;
+  position: fixed;
+  display: none;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.85);
+}
+
+// トリミング部の親要素
+.overlay .crop_modal {
+  width: 400px;
+  height: 400px;
+  position: absolute;
+  top: 100px;
+  right: 0;
+  left: 0;
+  margin: 0 auto;
+}
+
+// トリミング部を一部デフォルトからデザイン変更
+.overlay .crop_modal .cropper-view-box {
+  outline: none;
+  border: solid 2px #C84289;
+  border-radius: 5px;
+}
+
+// 閉じるボタンを擬似要素で作成
+.overlay .close_btn {
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  top: 20px;
+  right: 40px;
+}
+.overlay .close_btn:before {
+  display: block;
+  content: "";
+  width: 1px;
+  height: 36px;
+  background-color: #fff;
+  transform: rotate(45deg);
+  position: absolute;
+  top: 8px;
+  left: 25px;
+}
+.overlay .close_btn:after {
+  display: block;
+  content: "";
+  width: 1px;
+  height: 36px;
+  background-color: #fff;
+  transform: rotate(-45deg);
+  position: absolute;
+  top: 8px;
+  left: 25px;
+}
+
+// トリミング決定ボタン
+.overlay .select_icon_btn {
+  letter-spacing: normal;
+  width: 200px;
+  height: 40px;
+  line-height: 40px;
+  background-color: #C84289;
+  color: #fff;
+  border-radius: 5px;
+  text-align: center;
+  box-sizing: border-box;
+  position: absolute;
+  top: 530px;
+  right: 0;
+  left: 0;
+  margin: 0 auto;
+  cursor: pointer;
+}

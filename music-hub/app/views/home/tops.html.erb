@@ -1,5 +1,0 @@
-<div class="container">
-    <%= form_with( url: search_artists_path, class: 'search_form', method: :get, local:true) do |f| %>
-    <%= f.text_field :search, class: 'artist-form', value: params[:search], placeholder: "アーティスト名を入力してEnter" %>
-    <% end %>
-</div>
