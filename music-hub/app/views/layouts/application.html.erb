@@ -28,7 +28,7 @@
                             <%= link_to ' Search ', root_path%>
                         </li>
                         <li class="topmenu" href="#">
-                            <%= link_to ' Logout ', destroy_user_session_path, method: :delete%>
+                            <%= link_to ' Logout ', destroy_user_session_path, method: :delete, data: { confirm: 'ログアウトしますか？' }%>
                         </li>
                     </ul>
                 </div>

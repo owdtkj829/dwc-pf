@@ -41,9 +41,6 @@ class ArtistsController < ApplicationController
       @artists =  params[:search].present? ? Artist.artist_serach(params[:search]) :  Artist.none
 	end
 
-	def time
-	end
-
 	private
 	def artist_params
     	params.require(:artist).permit(:name, :explanation, :image)

@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-	#アーティスト用のカレンダー
+	#アーティストページ
 	def index
 		@events = Event.where(artist_id: params[:artist_id])
 		@artist = Artist.find(params[:artist_id])
