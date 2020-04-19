@@ -9,28 +9,26 @@
     <%= javascript_include_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
 </head>
 
-<body data-turbolinks="false">
-    <header class="navbar navbar-expand-md">
+<body data-turbolinks="false" id="top-background">
+    <header>
         <div class="container">
             <div class="row-header-text">
                 <% if user_signed_in? %>
                 <!--if文でログイン時とログアウト時の表示を変更-->
-                <nav class="nav navbar-nav navbar-left">
-                    <%= link_to image_tag('logo.png',  class: 'headerlogo'), root_path %>
-                </nav>
+                <%= link_to image_tag('logo.png',  class: 'headerlogo'), root_path %>
                 <div id="sp-menu">
                     <ul class="nav nav-pills navbar-right">
                         <li class="topmenu" href="#">
-                            <%= link_to 'MYPAGE', user_path(current_user)%>
+                            <%= link_to ' My Page ', user_path(current_user)%>
                         </li>
                         <li class="topmenu" href="#">
-                            <%= link_to 'ARTISTS', artists_path%>
+                            <%= link_to ' Artists ', artists_path%>
                         </li>
                         <li class="topmenu" href="#">
-                            <%= link_to 'SEARCH', root_path%>
+                            <%= link_to ' Search ', root_path%>
                         </li>
                         <li class="topmenu" href="#">
-                            <%= link_to 'SIGN OUT', destroy_user_session_path, method: :delete%>
+                            <%= link_to ' Logout ', destroy_user_session_path, method: :delete%>
                         </li>
                     </ul>
                 </div>
@@ -42,24 +40,20 @@
                     </a>
                 </div>
                 <% else %>
-                <nav class="nav navbar-nav navbar-left">
-                    <h2 class="titlelogo">
-                        <%= link_to image_tag('logo.png', class: 'headerlogo'), root_path %>
-                    </h2>
-                </nav>
+                <%= link_to image_tag('logo.png', class: 'headerlogo'), root_path %>
                 <div id="sp-menu">
                     <ul class="nav nav-pills">
                         <li class="topmenu" href="#">
-                            <%= link_to ' TOP', root_path %>
+                            <%= link_to ' Top ', root_path %>
                         </li>
                         <li class="topmenu" href="#">
-                            <%= link_to ' ABOUT ', about_path %>
+                            <%= link_to ' About ', about_path %>
                         </li>
                         <li class="topmenu" href="#">
-                            <%= link_to ' SIGN UP',new_user_registration_path %>
+                            <%= link_to ' Sign Up ',new_user_registration_path %>
                         </li>
                         <li class="topmenu" href="#">
-                            <%= link_to ' SIGN IN ', new_user_session_path %>
+                            <%= link_to ' Log In ', new_user_session_path %>
                         </li>
                         <% end %>
                     </ul>
@@ -74,15 +68,7 @@
             </div>
         </div>
     </header>
-    <p class="notice">
-        <%= notice %>
-    </p>
-    <p class="alert">
-        <%= alert %>
-    </p>
     <%= yield %>
-    <footer>
-    </footer>
 </body>
 
 </html>

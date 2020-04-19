@@ -15,115 +15,128 @@
  *= require fullcalendar
  */
 
- @import "bootstrap-sprockets";
- @import "bootstrap";
- @import "tempusdominus-bootstrap-4.css";
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import "tempusdominus-bootstrap-4.css";
 
-.headerlogo{
-	margin-top: 0px;
-	object-fit: cover;
+#top-background {
+    background-color: #F5F5F5;
+    background-size: auto;
+    height: 100vh;
 }
 
-.topmenu{
-	font-size: 20px;
+.topmenu {
+    font-size: 20px;
 }
 
-footer{
-  margin-top: 50px;
-  margin-bottom: 50px;
+footer {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.new-password {
+    margin-left: 30px;
+}
+
+.devise-container{
+  height: 100px;
+}
+
+.registration-container{
+  height: 60px;
 }
 
 /* ---------------------------- */
 /* --- ハンバーガーアイコン --- */
 /* ---------------------------- */
- 
-#hm-icon{
-  position: fixed;
-  right: 40px;
-  top: 20px;
-  z-index: 20;
+
+#hm-icon {
+    position: fixed;
+    right: 40px;
+    top: 20px;
+    z-index: 20;
 }
- 
+
 .menu-trigger,
 .menu-trigger span {
-  display: inline-block;
-  transition: all .4s;
-  box-sizing: border-box;
+    display: inline-block;
+    transition: all .4s;
+    box-sizing: border-box;
 }
- 
+
 .menu-trigger {
-  position: relative;
-  width: 50px;
-  height: 44px;
+    position: relative;
+    width: 50px;
+    height: 44px;
 }
- 
+
 .menu-trigger span {
-  position: absolute;
-  left: 0;
-  width: 100%;
-  height: 4px;
-  background-color: #000;
-  border-radius: 4px;
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background-color: #4682B4;
+    border-radius: 4px;
 }
- 
+
 .menu-trigger span:nth-of-type(1) {
-  top: 0;
+    top: 0;
 }
- 
+
 .menu-trigger span:nth-of-type(2) {
-  top: 20px;
+    top: 20px;
 }
- 
+
 .menu-trigger span:nth-of-type(3) {
-  bottom: 0;
+    bottom: 0;
 }
- 
+
 .menu-trigger.active span:nth-of-type(1) {
-  -webkit-transform: translateY(20px) rotate(-45deg);
-  transform: translateY(20px) rotate(-45deg);
-  background-color: #fff;
+    -webkit-transform: translateY(20px) rotate(-45deg);
+    transform: translateY(20px) rotate(-45deg);
+    background-color: #fff;
 }
- 
+
 .menu-trigger.active span:nth-of-type(2) {
-  opacity: 0;
+    opacity: 0;
 }
- 
+
 .menu-trigger.active span:nth-of-type(3) {
-  -webkit-transform: translateY(-20px) rotate(45deg);
-  transform: translateY(-20px) rotate(45deg);
-  background-color: #fff;
+    -webkit-transform: translateY(-20px) rotate(45deg);
+    transform: translateY(-20px) rotate(45deg);
+    background-color: #fff;
 }
- 
- 
+
+
 /* ------------------------ */
 /* ------ spメニュー ------ */
 /* ------------------------ */
- 
- 
+
+
 #sp-menu {
-  position: fixed;
-  top: 0;
-  right: 0;
-  background: #000;
-  color: #fff;
-  width: 10%;
-  min-height: 100%;
-  display: none;
-  z-index: 9;
-  opacity: 75;
+    position: fixed;
+    top: 0;
+    right: 0;
+    background: #4682B4;
+    color: #fff;
+    width: 10%;
+    min-height: 100%;
+    display: none;
+    z-index: 9;
+    opacity: 75;
 }
 
-#sp-menu ul{
-  margin-top: 100px;
+#sp-menu ul {
+    margin-top: 100px;
 }
- 
-#sp-menu li{
-  text-align: center;
-  margin-bottom: 30px;
+
+#sp-menu li {
+    text-align: center;
+    margin-bottom: 30px;
 }
- 
-#sp-menu a{
-  color: #fff;
-  text-decoration: none;
-  font-weight: bold;
+
+#sp-menu a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
 }

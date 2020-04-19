@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row">
         <div class="col-xs-10 col-xs-offset-1" align="center">
-            <h2>アーティスト検索結果</h2>
+            <h2><strong>アーティスト検索結果<strong></h2>
         </div>
         <div class="col-xs-10 col-xs-offset-1 artist-new-btn" align="right">
             <% if user_signed_in? %>
@@ -11,24 +11,28 @@
     </div>
     <div class="row">
         <div class="col-xs-10 col-xs-offset-1">
-            <% @artists.each do|artist| %>
-            <div class="form-group">
-                <table class="table devise-table">
-                    <tr>
-                        <th class="col-xs-4">
-                            <%= attachment_image_tag artist,:image, size:"100x100", format: 'jpeg' , fallback: "no_image.jpg"%><br>
-                        </th>
-                        <td class="col-xs-2">
-                            <p class="favorite-artist">
-                                <%= artist.name %>
-                            </p>
-                        </td>
-                        <td class="col-xs-6" align="right">
-                            <%= link_to 'スケジュールを確認する',artist_events_path(artist), class: "artist-events-path" %>
-                        </td>
-                    </tr>
-                </table>
+            <% if @artists.empty?  %>
+            <div class="searched">
+                <h1>お探しのアーティストは見つかりませんでした</h1>
             </div>
+            <% else %>
+            <% @artists.each do|artist| %>
+            <table class="table devise-table">
+                <tr>
+                    <th class="col-xs-4">
+                        <%= attachment_image_tag artist, :image, size: "100x100", format: 'jpeg' , fallback: "no_image.jpg"%><br>
+                    </th>
+                    <td class="col-xs-2">
+                        <p class="favorite-artist">
+                            <%= artist.name %>
+                        </p>
+                    </td>
+                    <td class="col-xs-6" align="right">
+                        <%= link_to 'スケジュールを確認する',artist_events_path(artist), class: "artist-events-path" %>
+                    </td>
+                </tr>
+            </table>
+            <% end %>
             <% end %>
         </div>
     </div>
