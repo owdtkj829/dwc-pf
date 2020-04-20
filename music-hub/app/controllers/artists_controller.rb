@@ -1,5 +1,6 @@
 class ArtistsController < ApplicationController
 	before_action :authenticate_user!,except:[:index]
+	before_action :correct_user, only: [:edit]
 
 	def index
 		@artists = Artist.all
@@ -40,4 +41,9 @@ class ArtistsController < ApplicationController
 	def artist_params
     	params.require(:artist).permit(:name, :explanation, :image)
 	end
+	#URL直打ち防止
+  	def correct_user
+   		@artist = Artist.find(params[:id])
+   		redirect_to root_path unless @artist.user_id == current_user.id
+ 	end
 end

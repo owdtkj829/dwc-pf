@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
-  before_action :correct_user, only: [:edit, :update, :destroy, :favorite]
+  before_action :correct_user, only: [:edit]
   before_action :authenticate_user!
+  
   def show
   	@event = Event.new
     @favorites = Favorite.where(user_id: current_user.id)
@@ -28,7 +29,6 @@ class UsersController < ApplicationController
 
   def favorite
     @favorites = Favorite.where(user_id: current_user.id)
-
   end
 
   def myrecommend
@@ -53,6 +53,6 @@ class UsersController < ApplicationController
   #URL直打ち防止
   def correct_user
     @user = User.find(params[:id])
-    redirect_to user_session_path unless @user == current_user
+    redirect_to root_path unless @user == current_user
   end
 end

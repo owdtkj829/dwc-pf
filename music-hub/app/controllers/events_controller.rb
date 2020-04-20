@@ -1,4 +1,5 @@
 class EventsController < ApplicationController
+	before_action :correct_user, only: [:user_index]
 	before_action :authenticate_user!
 
 	#アーティストページ
@@ -77,5 +78,10 @@ class EventsController < ApplicationController
   	end
 	def event_params
 		params.require(:event).permit(:artist_id, :title, :venue, :start, :end,:share, :url, :memo )
+	end
+	#URL直打ち防止
+	def correct_user
+	    @user = User.find(params[:user_id])
+	    redirect_to root_path unless @user == current_user
 	end
 end
