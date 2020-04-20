@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row">
         <div class="col-xs-10 col-xs-offset-1" align="center">
-            <h2><strong>アーティスト検索結果<strong></h2>
+            <h3><strong>アーティスト検索結果<strong></h3>
         </div>
         <div class="col-xs-10 col-xs-offset-1 artist-new-btn" align="right">
             <% if user_signed_in? %>
@@ -19,17 +19,20 @@
             <% @artists.each do|artist| %>
             <table class="table devise-table">
                 <tr>
-                    <th class="col-xs-4">
+                    <th class="col-xs-2">
                         <%= attachment_image_tag artist, :image, size: "100x100", format: 'jpeg' , fallback: "no_image.jpg"%><br>
                     </th>
-                    <td class="col-xs-2">
+                    <td class="col-xs-6">
                         <p class="favorite-artist">
                             <%= artist.name %>
                         </p>
+                        <%= artist.explanation%>
                     </td>
-                    <td class="col-xs-6" align="right">
+                    <% if user_signed_in? %>
+                    <td class="col-xs-4" align="right">
                         <%= link_to 'スケジュールを確認する',artist_events_path(artist), class: "artist-events-path" %>
                     </td>
+                    <% end %>
                 </tr>
             </table>
             <% end %>

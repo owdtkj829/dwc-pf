@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row">
         <div class="col-xs-10 col-xs-offset-1" align="center">
-            <h2>アーティスト一覧</h2>
+            <h3><strong>アーティスト一覧</strong></h3>
         </div>
         <div class="col-xs-4 col-xs-offset-4 artist-new-btn">
             <%= form_with( url: search_artists_path, class: 'search_form', method: :get, local:true) do |f| %>
@@ -12,23 +12,22 @@
     <div class="row">
         <div class="col-xs-10 col-xs-offset-1">
             <% @artists.each do|artist| %>
-            <div class="form-group">
-                <table class="table devise-table">
-                    <tr>
-                        <th class="col-xs-4">
-                            <%= attachment_image_tag artist,:image, size:"100x100", format: 'jpeg' , fallback: "no_image.jpg"%><br>
-                        </th>
-                        <td class="col-xs-2">
-                            <p class="favorite-artist">
-                                <%= artist.name %>
-                            </p>
-                        </td>
-                        <td class="col-xs-6" align="right">
-                            <%= link_to 'スケジュールを確認する',artist_events_path(artist), class: "artist-events-path" %>
-                        </td>
-                    </tr>
-                </table>
-            </div>
+            <table class="table devise-table">
+                <tr>
+                    <th class="col-xs-2">
+                        <%= attachment_image_tag artist,:image, size:"100x100", format: 'jpeg' , fallback: "no_image.jpg"%><br>
+                    </th>
+                    <td class="col-xs-6">
+                        <p class="favorite-artist">
+                            <%= artist.name %>
+                        </p>
+                        <%= artist.explanation%>
+                    </td>
+                    <td class="col-xs-4" align="right">
+                        <%= link_to 'スケジュールを確認する',artist_events_path(artist), class: "artist-events-path" %>
+                    </td>
+                </tr>
+            </table>
             <% end %>
         </div>
     </div>
