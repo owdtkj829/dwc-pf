@@ -1,32 +1,29 @@
 <div class="container">
     <div class="row">
         <div class="col-xs-10 col-xs-offset-1" align="center">
-            <h2>お気に入り曲一覧</h2>
+            <h3><strong>お気に入り曲一覧</strong></h3>
         </div>
     </div>
     <div class="row">
         <div class="col-xs-10 col-xs-offset-1">
             <% @myrecommends.each do |myrecommend| %>
-            <div class="group">
-                <table class="table myrecommend-table">
-                    <tr>
-                        <th class="col-xs-4">
-                            <p class="glyphicon glyphicon-user myrecommend-artist-name">
-                                <%= myrecommend.recommend.artistname %>
-                            </p>
-                            <p class="glyphicon glyphicon-headphones myrecommend-song">
-                                <%= myrecommend.recommend.song %>
-                            </p>
-                            <p class="glyphicon glyphicon-film myrecommned-url">
-                                <%= myrecommend.recommend.url %>
-                            </p>
-                        </th>
-                        <td class="col-xs-4" align="center">
-                            <p class="to-comment"><%= link_to "コメントページへ",artist_recommend_path(myrecommend.artist_id,myrecommend.recommend_id) %></p>
-                        </td>
-                    </tr>
-                </table>
-            </div>
+            <table class="table myrecommend-table">
+                <tr>
+                    <th class="col-xs-6">
+                        <p class="glyphicon glyphicon-user myrecommend-artist-name">
+                            <%= myrecommend.recommend.artistname %>
+                        </p><br>
+                        <p class="glyphicon glyphicon-headphones myrecommend-song">
+                            <%= myrecommend.recommend.song %>
+                        </p>
+                    </th>
+                    <td class="col-xs-6" align="center">
+                        <p class="to-comment">
+                            <%= link_to "コメントページへ",artist_recommend_path(myrecommend.artist_id,myrecommend.recommend_id) %>
+                        </p>
+                    </td>
+                </tr>
+            </table>
             <% end %>
         </div>
     </div>

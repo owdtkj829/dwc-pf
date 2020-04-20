@@ -1,32 +1,30 @@
 <div class="container">
     <div class="row">
         <div class="col-xs-10 col-xs-offset-1" align="center">
-            <h4>アーティストお気に入り一覧</h4>
-        </div>
-        <div class="col-xs-10 col-xs-offset-1" align="right">
-            <p>ここに検索窓</p>
+            <h3><strong>アーティストお気に入り一覧</strong></h3>
         </div>
     </div>
     <div class="row">
         <div class="col-xs-10 col-xs-offset-1">
             <% @favorites.each do |favorite| %>
-            <div class="form-group">
-                <table class="table devise-table">
-                    <tr>
-                        <th class="col-xs-4">
-                            <%= attachment_image_tag favorite.artist,:image,size:"100x100",fallback: "no_image.jpg"%><br>
-                        </th>
-                        <td class="col-xs-2">
-                            <h4 class="favorite-artist">
-                                <%= favorite.artist.name %>
-                            </h4>
-                        </td>
-                        <td class="col-xs-6" align="right">
-                            <%= link_to "スケジュールを確認する",artist_events_path(favorite.artist_id),class: "btn btn-default favorite-artist"%>
-                        </td>
-                    </tr>
-                </table>
-            </div>
+            <table class="table">
+                <tr>
+                    <th class="col-xs-2">
+                        <%= attachment_image_tag favorite.artist,:image,size:"100x100",fallback: "no_image.jpg" %><br>
+                    </th>
+                    <td class="col-xs-6">
+                        <h4 class="favorite-artist">
+                            <%= favorite.artist.name %>
+                        </h4>
+                        <%= favorite.artist.explanation %>
+                    </td>
+                    <td class="col-xs-4" align="right">
+                        <p class="favorite-artist-link">
+                            <%= link_to "スケジュールを確認する", artist_events_path(favorite.artist_id) %>
+                        </p>
+                    </td>
+                </tr>
+            </table>
             <% end %>
         </div>
     </div>
