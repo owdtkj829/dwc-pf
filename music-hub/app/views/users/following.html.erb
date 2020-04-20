@@ -1,0 +1,29 @@
+<div class="container">
+    <div class="row">
+        <div class="col-xs-10 col-xs-offset-1" align="center">
+            <h3><strong>フォロー中</strong></h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-10 col-xs-offset-1">
+            <% @users.each do |user| %>
+            <table>
+                <tr>
+                    <th class="col-xs-1">
+                        <%= attachment_image_tag user, :image, size:"100x100", fallback: "no_image.jpg"%><br>
+                    </th>
+                    <td class="col-xs-8">
+                        <h4>
+                            <%= link_to "#{user.name}", user_path(user.id) %>
+                        </h4>
+                        <%= user.introduction %>
+                    </td>
+                    <td class="col-xs-1" align="right" id="follow-<%= @user.id %>">
+                        <%= render partial: "follow", locals: { user: user} %>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <% end %>
+    </div>
+</div>
