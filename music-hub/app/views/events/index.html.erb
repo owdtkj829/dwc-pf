@@ -1,34 +1,39 @@
-<div class="container">
-    <div class="row">
-        <div class="col-xs-3">
-            <h2 align="center">アーティスト情報</h2>
-            <div class="col-xs-6">
-                <%= attachment_image_tag @artist, :image,size:"120x120", fallback: "no_image.jpg" %>
+<div class="event-page">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-3 artist-info">
+                <div class="col-xs-12 event-artist-image">
+                    <table>
+                        <tr>
+                            <th>
+                                <%= attachment_image_tag @artist, :image, size:"80x80", fallback: "no_image.jpg" %>
+                            </th>
+                            <td><p class="event-artist-name">
+                                    <%= @artist.name %>
+                                </p></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="col-xs-12 artist-explanation">
+                    <%= @artist.explanation %>
+                </div>
+                <div class="col-xs-12 artist-btn" id="favorite-<%= @artist.id %>">
+                    <%= render partial: "favorite", locals: { artist: @artist } %>
+                </div>
+                <div class="col-xs-12 artist-btn">
+                    <%= link_to 'みんなのおすすめへ', artist_recommends_path(@artist.id), class:"btn btn-info col-xs-12"%>
+                </div>
+                <div class="col-xs-12 artist-btn">
+                    <% if @artist.user_id == current_user.id%>
+                    <%= link_to ' 編　　集 ', edit_artist_path(@artist.id), class:"btn btn-success col-xs-12"%>
+                    <% end %>
+                </div>
             </div>
-            <div class="col-xs-6" align="center">
-                <h4>
-                    <%= @artist.name %>
-                </h4>
-            </div>
-            <div class="col-xs-12 artist-explanation">
-                <%= @artist.explanation %>
-            </div>
-            <div class="col-xs-12 artist-btn" id="favorite-<%= @artist.id %>">
-                <%= render partial: "favorite", locals: { artist: @artist } %>
-            </div>
-            <div class="col-xs-12 artist-btn">
-                <%= link_to 'みんなのおすすめへ', artist_recommends_path(@artist.id), class:"btn btn-info col-xs-12"%>
-            </div>
-            <div class="col-xs-12 artist-btn">
-                <% if @artist.user_id == current_user.id%>
-                <%= link_to ' 編　　集 ', edit_artist_path(@artist.id), class:"btn btn-success col-xs-12"%>
-                <% end %>
-            </div>
-        </div>
-        <div class="col-xs-9">
-            <div id="calendar"></div>
-            <div id="inputEditForm">
-                <%= render 'events/artistedit', events: @events %>
+            <div class="col-xs-9">
+                <div id="calendar"></div>
+                <div id="inputEditForm">
+                    <%= render 'events/artistedit', events: @events %>
+                </div>
             </div>
         </div>
     </div>
@@ -63,7 +68,7 @@ $(function() {
                 header: {
                     left: 'today prev,next',
                     center: 'title',
-                    right: 'month agendaDay'
+                    right: 'month agendaDay listMonth'
                 },
                 //終了時刻がないイベントの表示間隔
                 defaultTimedEventDuration: '03:00:00',
@@ -75,7 +80,8 @@ $(function() {
                     today: '今日',
                     month: '月',
                     week: '週',
-                    day: '日'
+                    day: '日',
+                    list: 'リスト'
                 },
                 selectable: true, // 選択可
                 selectHelper: true, // 選択時にプレースホルダーを描画
@@ -83,14 +89,14 @@ $(function() {
                 navLinks: true,
                 businessHours: true,
                 eventLimit: true,
-                locale: 'ja',
+
                 timeZone: 'Asia/Tokyo',
                 //スケジュールの時間表示を２４時間に
                 timeFormat: "HH:mm",
                 //スケジュールの色を変える
-                eventColor: '#87cefa',
+                eventColor: '#4682B4',
                 //スケジュールの文字色を変える
-                eventTextColor: '#000000',
+                eventTextColor: '#DCDCDC',
 
                 eventClick: function(calEvent, jsEvent, view) {
                     $(`#inputScheduleEditForm${calEvent.id}`).modal('show');

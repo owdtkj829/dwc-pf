@@ -3,48 +3,52 @@
     <div class="modal-dialog modal-nm">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" align="center">スケジュール編集</h4>
+                <h3 class="modal-title" align="center"><strong>スケジュール編集</strong></h3>
             </div>
-            <div class="modal-body">
+            <div class="col-xs-10 col-xs-offset-1 artist-event-edit">
                 <%= form_with(model: event, url: artist_event_path(event.artist_id, event.id), method: :put) do |f| %>
-                <span>アーティスト</span>
-                <span>
-                    <h4>
-                        <%= event.artist.name%>
-                    </h4>
-                </span>
-                <span>タイトル</span>
-                <span>
-                    <h4>
-                        <%= f.text_field :title ,class: 'col-xs-12'%>
-                    </h4>
-                </span>
-                <span>開始</span>
-                <span>
-                    <%= f.datetime_field :start ,class: 'col-xs-12'%></span><br>
-                <span>終了</span>
-                <span>
-                    <%= f.datetime_field :end ,class: 'col-xs-12'%></span><br>
-                <span>
-                    シェア</span>
-                <span>
-                    <%= f.select :share, [["シェアする", "シェアする"], ["シェアしない", "シェアしない"]], {}, {class: 'form-control'} %></span>
-                </span>
-                <span>会場</span>
-                <span>
-                    <%= f.text_field :venue ,class: 'col-xs-12'%></span><br>
-                <span>URL</span>
-                <span>
-                    <%= f.url_field :url ,class: 'col-xs-12'%></span><br>
-                <span>メモ</span>
-                <span>
-                    <%= f.text_area :memo ,class: 'col-xs-12'%></span><br>
+                <div class="col-xs-5 artist-event-item">アーティスト：</div>
+                <div class="col-xs-7 artist-event-item">
+                    <strong>
+                        <%= event.artist.name%></strong>
+                </div>
+                <div class="col-xs-5 artist-event-item">タイトル：</div>
+                <div class="col-xs-7 artist-event-item">
+                    <%= f.text_field :title ,class: 'form-control'%>
+                </div>
+                <div class="col-xs-5 ">開始：</div>
+                <div class="col-xs-7 artist-event-item">
+                    <%= f.datetime_field :start ,class: 'form-control'%>
+                </div>
+                <div class="col-xs-5 artist-event-item">終了：</div>
+                <div class="col-xs-7 artist-event-item">
+                    <%= f.datetime_field :end ,class: 'form-control'%>
+                </div>
+                <div class="col-xs-5 artist-event-item">
+                    シェア：</div>
+                <div class="col-xs-7 artist-event-item">
+                    <%= f.select :share, [["シェアする", "シェアする"], ["シェアしない", "シェアしない"]], {}, {class: 'form-control'} %>
+                </div>
+                <div class="col-xs-5 artist-event-item">会場：</div>
+                <div class="col-xs-7 artist-event-item">
+                    <%= f.text_field :venue ,class: 'form-control'%>
+                </div>
+                <div class="col-xs-5 artist-event-item">URL：</div>
+                <div class="col-xs-7 artist-event-item">
+                    <%= f.url_field :url ,class: 'form-control'%>
+                </div>
+                <div class="col-xs-5 artist-event-item">メモ：</div>
+                <div class="col-xs-7 artist-event-item">
+                    <%= f.text_area :memo ,class: 'form-control'%>
+                </div>
             </div>
             <div class="modal-footer">
-                <%= f.hidden_field :user_id, :value => current_user.id %>
-                <%= f.submit "編集する", class: "btn btn-primary" %>
-                <%= link_to "削除する", artist_event_path(event.artist_id, event.id), method: :delete, class: "btn btn-danger"%>
-                <button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
+                <div align="center">
+                    <%= f.hidden_field :user_id, :value => current_user.id %>
+                    <%= f.submit "編集する", class: "btn btn-primary" %>
+                    <%= link_to "削除する", artist_event_path(event.artist_id, event.id), method: :delete, class: "btn btn-danger"%>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
+                </div>
             </div>
             <% end %>
         </div>

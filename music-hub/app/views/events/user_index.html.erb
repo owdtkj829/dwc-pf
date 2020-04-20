@@ -1,50 +1,43 @@
-<div class="container">
-    <div class="row"></div>
-    <div class="row">
-        <div class="col-xs-3">
-            <h2 align="center">マイカレンダー</h2>
-            <%= form_for(@event) do |f| %>
-            <div class="row">
-                <h5>アーティスト</h5>
-                <%= collection_select :artist_event, :id, @favorites, :artist_id, :name,  {}, class: 'form-control'%>
+<div class="event-page">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-3">
+                <h3 align="center"><strong>マイカレンダー</strong></h3>
+                <%= form_for(@event) do |f| %>
+                <div class="col-xs-12 event-user-new">アーティスト：
+                    <%= collection_select :artist_event, :id, @favorites, :artist_id, :name,  {}, class: 'form-control'%>
+                </div>
+                <div class="col-xs-12 event-user-new">タイトル：
+                    <%= f.text_field :title ,class: 'form-control'%>
+                </div>
+                <div class="col-xs-12 event-user-new">開始：
+                    <%= f.datetime_field :start ,class: 'form-control'%>
+                </div>
+                <div class="col-xs-12 event-user-new">終了：
+                    <%= f.datetime_field :end ,class: 'form-control'%>
+                </div>
+                <div class="col-xs-12 event-user-new">シェア：
+                    <%= f.select :share, [["シェアする", "シェアする"], ["シェアしない", "シェアしない"]], {include_blank: "選択して下さい"}, {class: 'form-control'} %>
+                </div>
+                <div class="col-xs-12 event-user-new">会場：
+                    <%= f.text_field :venue ,class: 'form-control'%>
+                </div>
+                <div class="col-xs-12 event-user-new">URL：
+                    <%= f.url_field :url ,class: 'form-control'%>
+                </div><br>
+                <div class="col-xs-12 event-user-new">メモ：
+                    <%= f.text_area :memo ,class: 'form-control'%>
+                </div>
+                <div class="col-xs-12 event-new-btn">
+                    <%= f.submit ' 追 加 す る ',class: 'btn btn-primary col-xs-12' %>
+                </div>
+                <% end %>
             </div>
-            <div class="row">
-                <h5>タイトル</h5>
-                <%= f.text_field :title ,class: 'form-control'%>
-            </div>
-            <div class="row">
-                <h5>開始</h5>
-                <%= f.datetime_field :start ,class: 'form-control'%>
-            </div>
-            <div class="row">
-                <h5>終了</h5>
-                <%= f.datetime_field :end ,class: 'form-control'%>
-            </div>
-            <div class="row">
-                <h5>シェア</h5>
-                <%= f.select :share, [["シェアする", "シェアする"], ["シェアしない", "シェアしない"]], {include_blank: "選択して下さい"}, {class: 'form-control'} %>
-            </div>
-            <div class="row">
-                <h5>会場</h5>
-                <%= f.text_field :venue ,class: 'form-control'%>
-            </div>
-            <div class="row">
-                <h5>URL</h5>
-                <%= f.url_field :url ,class: 'form-control'%>
-            </div><br>
-            <div class="row">
-                <h5>メモ</h5>
-                <%= f.text_area :memo ,class: 'form-control'%>
-            </div>
-            <div class="row event-new-btn">
-                <%= f.submit ' 追 加 す る ',class: 'btn btn-primary col-xs-12' %>
-            </div>
-            <% end %>
-        </div>
-        <div class="col-xs-9">
-            <div id="calendar"></div>
-            <div id="inputEditForm">
-                <%= render 'events/edit', events: @events %>
+            <div class="col-xs-9">
+                <div id="calendar"></div>
+                <div id="inputEditForm">
+                    <%= render 'events/edit', events: @events %>
+                </div>
             </div>
         </div>
     </div>
@@ -80,7 +73,7 @@ $(function() {
                 header: {
                     left: 'today prev,next',
                     center: 'title',
-                    right: 'month agendaDay'
+                    right: 'month agendaDay listMonth'
                 },
                 //終了時刻がないイベントの表示間隔
                 defaultTimedEventDuration: '03:00:00',
@@ -92,7 +85,8 @@ $(function() {
                     today: '今日',
                     month: '月',
                     week: '週',
-                    day: '日'
+                    day: '日',
+                    list: 'リスト'
                 },
                 selectable: true, // 選択可
                 selectHelper: true, // 選択時にプレースホルダーを描画
@@ -100,16 +94,17 @@ $(function() {
                 navLinks: true,
                 businessHours: true,
                 eventLimit: true,
-            
+
                 timeZone: 'Asia/Tokyo',
                 //スケジュールの時間表示を２４時間に
                 timeFormat: "HH:mm",
                 //スケジュールの色を変える
-                eventColor: '#87cefa',
+                eventColor: '#4682B4',
                 //スケジュールの文字色を変える
-                eventTextColor: '#000000',
+                eventTextColor: '#DCDCDC',
                 disableDragging: true,
                 allDay: true,
+
                 // event クリックで編集、削除
                 eventClick: function(calEvent, jsEvent, view) {
                     jsEvent.preventDefault();

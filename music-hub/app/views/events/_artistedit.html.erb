@@ -3,56 +3,68 @@
     <div class="modal-dialog modal-nm">
         <div class="modal-content">
             <div class="row artist-event-edit">
-                <h3 class="modal-title" align="center">スケジュール</h3>
+                <h3 class="modal-title" align="center"><strong>スケジュール</strong></h3>
             </div>
             <%= form_for(@event) do |f| %>
-            <div class="col-xs-12">
-                <p>アーティスト：
-                    <%= event.artist.name%>
-                </p>
-                <%= hidden_field :artist_event, :id, :value => event.artist_id %>
-            </div>
-            <div class="col-xs-12">
-                <p>タイトル：
-                    <%= event.title%>
-                </p>
-                <%= f.hidden_field :title, :value => event.title %>
-            </div>
-            <div class="col-xs-12">
-                <p>開始：
-                    <%= event.start%>
-                </p>
-                <%= f.hidden_field :start, :value => event.start %>
-            </div>
-            <div class="col-xs-12">
-                <p>
-                    終了：
-                    <%= event.end%>
-                    <%= f.hidden_field :end, :value => event.end %>
-                </p>
-                <%= f.hidden_field :share, :value => "シェアしない" %>
-            </div>
-            <div class="col-xs-12">
-                <p>会場：
-                    <%= event.venue%>
-                </p>
-                <%= f.hidden_field :venue, :value => event.venue %>
-            </div>
-            <div class="col-xs-12">
-                <p>URL：
-                    <%= event.url%>
-                </p>
-                <%= f.hidden_field :url, :value => event.url %>
-            </div>
-            <div class="col-xs-12">
-                <p>メモ：
-                    <%= event.memo%>
-                </p>
-                <%= f.hidden_field :memo, :value => event.memo %>
-            </div>
+            <table class="col-xs-10 col-xs-offset-1 artist-event-edit">
+                <tr>
+                    <th class="col-xs-4">
+                        アーティスト：</th>
+                    <td>
+                        <%= event.artist.name%>
+                        <%= hidden_field :artist_event, :id, :value => event.artist_id %>
+                    </td>
+                </tr>
+                <tr>
+                    <th class="col-xs-5">タイトル：</th>
+                    <td>
+                        <%= event.title%>
+                        <%= f.hidden_field :title, :value => event.title %>
+                    </td>
+                </tr>
+                <tr>
+                    <th class="col-xs-5">開始：</th>
+                    <td>
+                        <%= event.start.strftime("%Y年%m月%d日 %H時%M分")%>
+                        <%= f.hidden_field :start, :value => event.start %>
+                    </td>
+                </tr>
+                <tr>
+                    <th class="col-xs-5">
+                        終了：</th>
+                    <td>
+                        <%= event.end.strftime("%Y年%m月%d日 %H時%M分")%>
+                        <%= f.hidden_field :end, :value => event.end %>
+                        <%= f.hidden_field :share, :value => "シェアしない" %>
+                    </td>
+                </tr>
+                <tr>
+                    <th class="col-xs-5">会場：</th>
+                    <td>
+                        <%= event.venue%>
+                        <%= f.hidden_field :venue, :value => event.venue %>
+                    </td>
+                </tr>
+                <tr>
+                    <th class="col-xs-5">URL：</th>
+                    <td>
+                        <%= raw Rinku.auto_link(event.url, :all, 'target="_blank"') %>
+                        <%= f.hidden_field :url, :value => event.url %>
+                    </td>
+                </tr>
+                <tr>
+                    <th class="col-xs-5">メモ：</th>
+                    <td>
+                        <%= event.memo%>
+                        <%= f.hidden_field :memo, :value => event.memo %>
+                    </td>
+                </tr>
+            </table>
             <div class="modal-footer">
-                <%= f.submit "登録する", class: "btn btn-primary"%>
-                <button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
+                <div align="center">
+                    <%= f.submit "登 録 す る", class: "btn btn-primary"%>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
+                </div>
             </div>
             <% end %>
         </div>
