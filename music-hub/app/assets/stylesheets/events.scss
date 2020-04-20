@@ -2,11 +2,51 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.event-page{
+	margin-top: 20px;
+	margin-bottom: 30px;
+}
+
+.event-user-new{
+	font-size: 15px;
+	margin-top: 10px;
+}
+
 .artist-event-edit{
 	margin-top:10px;
 	margin-bottom:10px;
 }
 
+.artist-event-item{
+	margin-botom:10px;
+}
 .event-new-btn{
 	margin-top:20px;
+	margin-bottom:20px;
+}
+
+.artist-info{
+	margin-top: 50px;
+}
+
+.event-artist-image{
+	margin-bottom: 10px;
+}
+
+.event-artist-name{
+	margin-left: 10px;
+	font-size: 20px;
+}
+
+.artist-explanation{
+	border-bottom-style: groove;
+    border-bottom-width: medium;
+   	border-top-style: groove;
+    border-top-width: medium;
+    padding-bottom: 30px;
+    padding-top: 30px;
+}
+
+.artist-event-edit{
+	font-size: 20px;
 }

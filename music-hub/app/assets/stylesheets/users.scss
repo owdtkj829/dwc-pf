@@ -16,10 +16,27 @@
   height: 50px;
 }
 
+.mypage-myreco-artistname{
+  margin-bottom: 10px;
+}
+
+.favorite-artist{
+  font-size: 20px;
+}
+
+.favorite-music{
+  font-size: 20px;
+  margin-top: 10px;
+}
+
 #image_select {
     display: none;
 }
 
+.favorite-artist-link{
+  font-size: 19px;
+  margin-top: 10px;
+}
 
 * {
     margin: 0;
@@ -34,12 +51,12 @@ h1 {
 
 .myrecommend-song {
     font-size: 25px;
-    margin-left: 60px;
+    margin-top: 5px;
 }
 
 .myrecommend-artist-name {
     font-size: 25px;
-    margin-top: 20px;
+    margin-top: 15px;
 }
 
 .myrecommned-url{
