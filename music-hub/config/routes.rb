@@ -20,9 +20,13 @@ Rails.application.routes.draw do
   get '/users/:user_id/events' => "events#user_index",as: 'user_events'
   get '/users/:user_id/events/:id' => "events#user_show",as: 'user_event'
 
-  resources :users, only: [:index, :show, :edit, :create, :update, :destroy]
+  #userのフォロー、フォロワーのviewページ
+  get 'users/:id/follows' => 'users#following',as: 'follows'
+  get 'users/:id/followers' => 'users#followers',as: 'followers'
 
-  resources :artists do
+  resources :users, only: [:show, :edit, :create, :update, :destroy]
+
+  resources :artists, only: [:index, :new, :edit, :create, :update, :destroy] do
     get :search, on: :collection
     resources :events,only: [:index, :create, :destroy, :update]
     resources :recommends,only: [:index, :show, :create, :dastroy] do
