@@ -30,8 +30,10 @@ class RecommendsController < ApplicationController
     	end
 	end
 
-	def dastroy
-		
+	def destroy
+		@recommend = Recommend.find(params[:id])
+		@recommend.destroy
+		redirect_back(fallback_location: root_path)
 	end
 
 	private

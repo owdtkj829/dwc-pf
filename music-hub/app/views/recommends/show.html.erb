@@ -36,10 +36,10 @@
     <p class="myrecommend-title"></p>
     <%= form_for(@comment, url: artist_recommend_comments_path(@artist.id, @recommend.id),method: :post) do |f| %>
     <div class="row">
-        <div class="col-xs-9">
+        <div class="col-xs-10">
             <%= f.text_area :comment, class: "form-control" %>
         </div>
-        <div class="col-xs-1 col-xs-offset-1">
+        <div class="col-xs-2" >
             <%= f.submit ' コメントする ',class: "btn btn-primary" %>
         </div>
     </div>

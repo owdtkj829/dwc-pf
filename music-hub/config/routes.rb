@@ -16,20 +16,20 @@ Rails.application.routes.draw do
   delete '/artists/:artist_id/recommends/:recommend_id/myrecommends' => "myrecommends#destroy"
   get '/users/:id/myrecommends' => "users#myrecommend",as: 'myrecommends'
 
-  #userのevent一覧表示と詳細表示
+  #userのfullcalendaer表示用
   get '/users/:user_id/events' => "events#user_index",as: 'user_events'
-  get '/users/:user_id/events/:id' => "events#user_show",as: 'user_event'
 
   #userのフォロー、フォロワーのviewページ
   get 'users/:id/follows' => 'users#following',as: 'follows'
   get 'users/:id/followers' => 'users#followers',as: 'followers'
 
-  resources :users, only: [:show, :edit, :create, :update, :destroy]
+  resources :users, only: [:show, :edit, :update, :destroy]
 
   resources :artists, only: [:index, :new, :edit, :create, :update, :destroy] do
     get :search, on: :collection
-    resources :events,only: [:index, :create, :destroy, :update]
-    resources :recommends,only: [:index, :show, :create, :dastroy] do
+    #eventsのindexをartistのfullcalendar表示用として使用
+    resources :events, only: [:index, :destroy, :update]
+    resources :recommends,only: [:index, :show, :create, :destroy] do
       resources :comments,only: [:create, :destroy]
     end
   end
