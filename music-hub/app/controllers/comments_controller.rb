@@ -1,4 +1,6 @@
 class CommentsController < ApplicationController
+	before_action :authenticate_user!
+
 	def create
 	    @recommend = Recommend.find(params[:recommend_id])
 	    @comment = @recommend.comments.build(comment_params)

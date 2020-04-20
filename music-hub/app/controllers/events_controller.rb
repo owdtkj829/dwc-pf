@@ -1,4 +1,6 @@
 class EventsController < ApplicationController
+	before_action :authenticate_user!
+
 	#アーティストページ
 	def index
 		@events = Event.where(artist_id: params[:artist_id])
@@ -29,7 +31,7 @@ class EventsController < ApplicationController
 
 	def update
 		@event = Event.find(params[:id])
-        @events = Event.where(user_id: current_user.id)
+		@event.user_id = current_user.id
         @event.update(event_params)
         redirect_back(fallback_location: root_path)
 	end

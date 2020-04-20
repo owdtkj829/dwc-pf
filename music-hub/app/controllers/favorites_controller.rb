@@ -1,5 +1,6 @@
 class FavoritesController < ApplicationController
-	before_action :set_artist
+	before_action :authenticate_user!
+  before_action :set_artist
 
   def create
     @favorite = Favorite.create(user_id: current_user.id, artist_id: @artist.id, name: @artist.name)

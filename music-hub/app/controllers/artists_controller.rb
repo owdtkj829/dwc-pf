@@ -1,13 +1,8 @@
 class ArtistsController < ApplicationController
-	
+	before_action :authenticate_user!,except:[:index]
+
 	def index
 		@artists = Artist.all
-	end
-
-	def show
-		@artist = Artist.find(params[:id])
-		@user = current_user
-		@events = Event.where(artist_id: params[:id])
 	end
 
 	def new

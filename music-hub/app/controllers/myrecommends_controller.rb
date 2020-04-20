@@ -1,5 +1,6 @@
 class MyrecommendsController < ApplicationController
-	before_action :set_recommend
+	before_action :authenticate_user!
+  before_action :set_recommend
 
   def create
     @myrecommend = Myrecommend.create(user_id: current_user.id, recommend_id: @recommend.id, artist_id: @artist.id)
