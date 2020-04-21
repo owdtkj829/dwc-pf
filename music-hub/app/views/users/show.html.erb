@@ -52,14 +52,14 @@
                     <%= link_to '>>もっと見る',myrecommends_path(@user) ,class: "link" %>
                 </p>
                 <% @myrecommends.first(6).each do |myrecommend|%>
-                <%= link_to artist_recommend_path(myrecommend.artist_id,myrecommend.recommend_id) do%>
-                <div class="col-xs-6">
-                    <h4><i class="glyphicon glyphicon-user mypage-myreco-artistname">
-                            <%= myrecommend.recommend.artistname %></i><br>
-                        <i class="glyphicon glyphicon-headphones">
-                            <%= myrecommend.recommend.song %></i></h4>
-                </div>
-                <% end %>
+                    <%= link_to artist_recommend_path(myrecommend.artist_id,myrecommend.recommend_id) do%>
+                        <div class="col-xs-6">
+                            <h4><i class="glyphicon glyphicon-user mypage-myreco-artistname">
+                                    <%= myrecommend.recommend.artistname %></i><br>
+                                <i class="glyphicon glyphicon-headphones">
+                                    <%= myrecommend.recommend.song %></i></h4>
+                        </div>
+                    <% end %>
                 <% end %>
             </div>
         </div>
