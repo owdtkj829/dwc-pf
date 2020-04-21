@@ -1,10 +1,11 @@
 <div class="container">
+    <div class="devise-container"></div>
     <div class="row">
-        <h3 class="text-center">パスワード再発行</h3>
+        <h3 class="text-center"><strong>パスワード再発行</strong></h3>
     </div>
     <div class="row">
         <div class="col-xs-12">
-            <div class="col-xs-10 col-xs-offset-1">
+            <div class="col-xs-8 col-xs-offset-2">
                 <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
                 <%= render "devise/shared/error_messages", resource: resource %>
                 <div class="form-group">
@@ -17,7 +18,7 @@
                         </tr>
                         <tr>
                             <td colspan="4" align="center">
-                                <%= f.submit "パスワードを再発行" ,class: "btn btn-primary"%>
+                                <%= f.submit "パスワード再設定メールを送る" ,class: "btn btn-primary"%>
                             </td>
                         </tr>
                     </table>
@@ -26,12 +27,12 @@
             </div>
             <div class="row">
                 <div class="col-xs-12">
-                    <div class="col-xs-10 col-xs-offset-1">
+                    <div class="col-xs-8 col-xs-offset-2">
                         <p class="devise-title-sm">既に登録済みの方</p>
                         <h4>
                             <%= link_to 'こちら', new_user_session_path , class: "link"%>からログインしてください。</h4>
                     </div>
-                    <div class="col-xs-10 col-xs-offset-1">
+                    <div class="col-xs-8 col-xs-offset-2">
                         <p class="devise-title-sm">登録がお済みでない方</p>
                         <h4>
                             <%= link_to "こちら", new_registration_path(resource_name)%>から新規登録を行ってください。</h4>

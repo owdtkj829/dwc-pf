@@ -6,6 +6,11 @@
     </div>
     <div class="row">
         <div class="col-xs-10 col-xs-offset-1">
+            <% if @favorites.empty?  %>
+            <div class="searched">
+                <h1>お気に入りのアーティストはまだいません。</h1>
+            </div>
+            <% end %>
             <% @favorites.each do |favorite| %>
             <table class="table">
                 <tr>

@@ -1,0 +1,7 @@
+<div class="col-xs-12">
+	<div class="btn btn-default col-xs-2 comment-close-btn" id="close">閉じる</div>
+    <%= form_for(comment, url: artist_recommend_comments_path(@artist.id, @recommend.id),method: :post) do |f| %>
+    <%= f.text_area :comment, class: "comments-area" %>
+    <%= f.submit ' コメント ',class: "btn btn-primary col-xs-12" %>
+</div>
+<% end %>

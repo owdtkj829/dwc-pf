@@ -8,7 +8,16 @@
             <%= form_for(@event) do |f| %>
             <table class="col-xs-10 col-xs-offset-1 artist-event-edit">
                 <tr>
-                    <th class="col-xs-4">
+                    <th class="col-xs-5">
+                        登録ユーザー：</th>
+                    <td>
+                        <%= link_to user_path(event.user_id) do%>
+                        <%= event.user.name%>
+                        <% end %>
+                    </td>
+                </tr>
+                <tr>
+                    <th class="col-xs-5">
                         アーティスト：</th>
                     <td>
                         <%= event.artist.name%>
