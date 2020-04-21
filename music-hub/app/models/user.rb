@@ -3,6 +3,9 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+  validates :name,uniqueness: { case_sensitive: :false },
+        length: { minimum: 2, maximum: 20 }
+  validates :introduction,length:{maximum:150}
 
   attachment :image
 
@@ -16,7 +19,7 @@ class User < ApplicationRecord
   has_many :favorites, dependent: :destroy
 
   #レコメンド機能
-  has_many :recommends
+  has_many :recommends, dependent: :destroy
   has_many :myrecommends, dependent: :destroy
   has_many :comments, dependent: :destroy
 
