@@ -22,6 +22,7 @@
     margin-right: 10px;
     margin-top: 180px;
     margin-bottom: 20px;
+    text-shadow: 1px 1px 2px silver
 }
 
 #search-artist-view {
@@ -44,9 +45,64 @@
     margin: 0 auto;
 }
 
-.top-page-view{
-  background: image-url('topimage.jpg');
-  background-size: cover;
-  widht: 100%;
-  height: 100vh;
+.top-page-view {
+    background: image-url('topimage.jpg');
+    background-size: cover;
+    widht: 100%;
+    height: 100vh;
+    position: relative;
+    z-index: 0;
+}
+
+.top-page-view:before{
+    content: '';
+    position: absolute;
+    z-index: -1;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    background: inherit;
+    filter: blur(5px);
+}
+
+.about-page-view {
+    background: image-url('aboutimage.jpg');
+    background-size: cover;
+    widht: 100%;
+    height: 100vh;
+    position: relative;
+    z-index: 0;
+    text-shadow: 1px 1px 2px silver
+}
+
+.about-page-view:before {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    background: inherit;
+    filter: blur(5px);
+}
+
+.about-title {
+    margin-top: 10px;
+    color: white;
+    font-size: 60px;
+    top: 100px;
+}
+
+.about-sub-title {
+    color: #FFCC00;
+    font-size: 20px;
+}
+
+.about-item {
+    margin-top: 10px;
+    margin-bottom: 5px;
+    font-size: 20px;
+    color: #F3FFD8;
 }

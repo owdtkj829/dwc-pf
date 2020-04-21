@@ -2,13 +2,9 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.myrecommend-title {
-    border-bottom-style: groove;
-    border-bottom-width: medium;
-    width: 100%;
-}
 
 .comments-area{
+    width: 100%;
 	margin-bottom: 30px;
 }
 
@@ -50,7 +46,6 @@
 
 .comment-recommend-song {
     font-size: 20px;
-    margin-left: 40px;
 }
 
 .comment-recommend-url {
@@ -68,4 +63,31 @@
 
 .recommend-submit{
     margin-top: 15px
+}
+
+.comments-area{
+    width: 370px;
+    height:120px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.comment-close-btn{
+    margin-top: 10px;
+    margin-left: 310px;
+}
+
+.recommend-fotter{
+    height:30px;
+}
+
+#modal {
+    position: fixed;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    height: 240px;
+    background-color: lightgray;
+    display: none;
 }
