@@ -7,7 +7,6 @@ class UsersController < ApplicationController
     @favorites = Favorite.where(user_id: current_user.id)
     @user = User.find(params[:id])
     @events = Event.where(user_id: current_user.id)
-    @artists = Artist.where(user_id: params[:id])
     @myrecommends = Myrecommend.where(user_id: params[:id])
   end
 

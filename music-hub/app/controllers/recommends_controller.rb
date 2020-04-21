@@ -9,8 +9,6 @@ class RecommendsController < ApplicationController
 
 	def show
 		@recommend = Recommend.find(params[:id])
-		params[:user_id] = @recommend.user_id
-		@user = User.find(params[:user_id])
 		@artist = Artist.find(params[:artist_id])
 		@comment = Comment.new
 		@comments = Comment.where(recommend_id: @recommend.id)
@@ -19,15 +17,13 @@ class RecommendsController < ApplicationController
 	def create
 		@recommend = Recommend.new(recommend_params)
 		@recommend.user_id = current_user.id
-		@recommend.artist_id = params[:artist_id]
+		@artist = Artist.find(params[:artist_id])
+		@recommend.artist_id = @artist.id
 		@url = params[:recommend][:url]
     	url = @url.last(11)
     	@recommend.url = url
-		if @recommend.save
-	       redirect_back(fallback_location: root_path)
-    	else
-	       render :index
-    	end
+		@recommend.save
+	    redirect_back(fallback_location: root_path)
 	end
 
 	def destroy

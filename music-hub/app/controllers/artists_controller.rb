@@ -1,5 +1,5 @@
 class ArtistsController < ApplicationController
-	before_action :authenticate_user!,except:[:index]
+	before_action :authenticate_user!,  only:[:index]
 	before_action :correct_user, only: [:edit]
 
 	def index
