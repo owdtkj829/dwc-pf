@@ -6,14 +6,17 @@ class CommentsController < ApplicationController
 	    @comment = @recommend.comments.build(comment_params)
 	    @comment.user_id = current_user.id
 	    if @comment.save
-	    redirect_back(fallback_location: root_path)
+	       redirect_back(fallback_location: root_path)
+	   	else
+	   	   flash[:comment_error] = "コメントを入力もしくは150文字以内で入力してください。"
+	   	   redirect_back(fallback_location: root_path)
     	end
 	end
 
 	def destroy
-		@comment = Comment.find(params[:id]) 
+		@comment = Comment.find(params[:id])
     	if @comment.destroy
-      		redirect_back(fallback_location: root_path)
+      	   redirect_back(fallback_location: root_path)
     	end
 	end
 

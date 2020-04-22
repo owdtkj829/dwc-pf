@@ -17,8 +17,12 @@ class ArtistsController < ApplicationController
 	def create
 		@artist = Artist.new(artist_params)
 		@artist.user_id = current_user.id
-		@artist.save
-		redirect_to artists_path
+		if @artist.save
+		   redirect_to artists_path
+		else
+		   flash[:artist_error] = "全て入力してください。また、アーティスト名20文字以内・アーティスト情報150文字以内で入力をお願いします。"
+	   	   redirect_back(fallback_location: root_path)
+	   	end
 	end
 
 	def update

@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :correct_user, only: [:edit]
   before_action :authenticate_user!
-  
+
   def show
   	@event = Event.new
     @favorites = Favorite.where(user_id: current_user.id)
@@ -16,8 +16,12 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    @user.update(user_params)
-    redirect_to user_path(current_user)
+    if @user.update(user_params)
+       redirect_to user_path(current_user)
+    else
+       flash[:user_error] = "全て入力してください。また、ユーザー名20文字以内・自己紹介150文字以内で入力をお願いします。"
+       redirect_back(fallback_location: root_path)
+    end
   end
 
   def destroy

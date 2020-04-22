@@ -22,8 +22,12 @@ class RecommendsController < ApplicationController
 		@url = params[:recommend][:url]
     	url = @url.last(11)
     	@recommend.url = url
-		@recommend.save
-	    redirect_back(fallback_location: root_path)
+		if @recommend.save
+	       redirect_back(fallback_location: root_path)
+	    else
+	       flash[:recommend_error] = "全て入力してください。アーティスト、ミュージック20文字以内・説明150文字以内で入力をお願いします。"
+	   	   redirect_back(fallback_location: root_path)
+	   	end
 	end
 
 	def destroy
