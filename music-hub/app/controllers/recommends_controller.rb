@@ -1,7 +1,6 @@
 class RecommendsController < ApplicationController
 	before_action :authenticate_user!
 	def index
-		@user = current_user.id
 		@artist = Artist.find(params[:artist_id])
 		@recommends = Recommend.where(artist_id: @artist.id)
 		@recommend = Recommend.new

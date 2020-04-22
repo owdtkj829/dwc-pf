@@ -22,7 +22,10 @@
                             <%= myrecommend.recommend.song %>
                         </p>
                     </th>
-                    <td class="col-xs-6" align="center">
+                    <td class="col-xs-2" id="myrecommends-<%= (myrecommend.recommend.id) %>">
+                        <%= render partial: "myrecommend", locals: { recommend: myrecommend.recommend, artist: myrecommend.artist} %>
+                    </td>
+                    <td class="col-xs-4" align="center">
                         <p class="to-comment">
                             <%= link_to "コメントページへ",artist_recommend_path(myrecommend.artist_id,myrecommend.recommend_id) %>
                         </p>

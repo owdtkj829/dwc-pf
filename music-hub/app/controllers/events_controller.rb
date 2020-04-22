@@ -48,14 +48,14 @@ class EventsController < ApplicationController
 	#ユーザーページ
   	def user_index
   		@event = Event.new
-  		@user = User.find(params[:user_id])
+  		@user = current_user
   		@favorites = Favorite.where(user_id: current_user.id)
-		@events = Event.where(user_id: params[:user_id])
+		@events = Event.where(user_id: current_user.id)
  	end
 
     #ユーザーページのカレンダー表示
     def events
-    	@events = Event.where(user_id: params[:user_id])
+    	@events = Event.where(user_id: current_user.id)
     	# render :json => @event
 	    respond_to do |format|
 	      format.json {
