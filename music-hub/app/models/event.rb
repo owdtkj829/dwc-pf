@@ -9,7 +9,7 @@ class Event < ApplicationRecord
 	validates :share, presence: true
 	validates :venue, {presence: true,length: {maximum: 30}}
 	validates :url, {presence: true,format: /\A#{URI::regexp(%w(http https))}\z/}
-	validates :share, {presence: true, length: {maximum: 150}}
+	validates :memo, {presence: true, length: {maximum: 150}}
 
 	#スケジュールをシェアするかしないか
 	enum share: { シェアする:0, シェアしない:1 }
