@@ -4,18 +4,17 @@ class UsersController < ApplicationController
 
   def show
   	@event = Event.new
-    @favorites = Favorite.where(user_id: current_user.id)
+    @favorites = Favorite.where(user_id: params[:id])
     @user = User.find(params[:id])
-    @events = Event.where(user_id: current_user.id)
     @myrecommends = Myrecommend.where(user_id: params[:id])
   end
 
   def edit
-    @user = User.find(params[:id])
+    @user = current_user
   end
 
   def update
-    @user = User.find(params[:id])
+    @user = current_user
     if @user.update(user_params)
        redirect_to user_path(current_user)
     else
@@ -25,13 +24,13 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    @user = User.find(params[:id])
+    @user = User.find(current_user.id)
     @user.destroy
     redirect_to root_path
   end
 
   def favorite
-    @favorites = Favorite.where(user_id: current_user.id)
+    @favorites = Favorite.where(user_id: params[:id])
   end
 
   def myrecommend
