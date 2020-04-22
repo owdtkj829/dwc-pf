@@ -37,6 +37,7 @@
         </div>
         <div class="col-xs-6">
             <div style="height:500px; width:100%; overflow:auto">
+                <%= flash[:comment_error] %>
                 <% @comments.each do |comment| %>
                 <div class="row comment-box">
                     <div class="col-xs-2">
@@ -66,7 +67,6 @@
     </div>
 </div>
 <div class="recommend-fotter"></div>
-
 <!--コメント入力モーダル表示用-->
 <div id="modal">
     <%= render 'recommends/commentarea', comment: @comment %>

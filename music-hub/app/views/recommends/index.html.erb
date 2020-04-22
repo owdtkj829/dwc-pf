@@ -28,6 +28,7 @@
             <% end %>
         </div>
         <div class="col-xs-9">
+            <%= flash[:recommend_error] %>
             <div class="row">
                 <div class="col-xs-12">
                     <% @recommends.each do |recommend| %>

@@ -1,6 +1,7 @@
 <div class="event-page">
     <div class="container">
         <div class="row">
+            <p align="center"><%= flash[:event_error] %></p>
             <div class="col-xs-3">
                 <h3 align="center"><strong>マイカレンダー</strong></h3>
                 <%= form_for(@event) do |f| %>

@@ -19,6 +19,10 @@
 @import "bootstrap";
 @import "tempusdominus-bootstrap-4.css";
 
+p {
+  overflow-wrap: break-word;
+}
+
 #top-background {
     background-color: #F5F5F5;
     background-size: auto;

@@ -21,7 +21,7 @@
                     <%= render partial: "favorite", locals: { artist: @artist } %>
                 </div>
                 <div class="col-xs-12 artist-btn">
-                    <%= link_to 'みんなのおすすめへ', artist_recommends_path(@artist.id), class:"btn btn-info col-xs-12"%>
+                    <%= link_to 'みんなのおすすめへ', artist_recommends_path(@artist.id), class:"btn btn-info btn-lg col-xs-12"%>
                 </div>
                 <div class="col-xs-12 artist-btn">
                     <% if @artist.user_id == current_user.id%>

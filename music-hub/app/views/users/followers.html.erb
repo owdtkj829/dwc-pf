@@ -6,8 +6,13 @@
     </div>
     <div class="row">
         <div class="col-xs-10 col-xs-offset-1">
+            <% if @users.empty?  %>
+            <div class="searched">
+                <h1>フォロワーはまだいません。</h1>
+            </div>
+            <% end %>
             <% @users.each do |user| %>
-            <table>
+            <table class="table devise-table">
                 <tr>
                     <th class="col-xs-1">
                         <%= attachment_image_tag user, :image, size:"100x100", fallback: "no_image.jpg"%><br>
@@ -16,7 +21,9 @@
                         <h4>
                             <%= link_to "#{user.name}", user_path(user.id) %>
                         </h4>
-                        <%= user.introduction %>
+                        <p>
+                            <%= user.introduction %>
+                        </p>
                     </td>
                     <td class="col-xs-1" align="right" id="follow-<%= @user.id %>">
                         <% unless current_user.id == user.id %>
@@ -25,7 +32,7 @@
                     </td>
                 </tr>
             </table>
+            <% end %>
         </div>
-        <% end %>
     </div>
 </div>
