@@ -20,7 +20,7 @@ class EventsController < ApplicationController
 		     format.json { render :events , status: :created, location: @events }
 	       end
 	    else
-	       flash[:event_error] = "全て入力してください。また、タイトル20文字以内・会場30文字以内、メモ150文字以内、終了日は開始日以降で入力をお願いします。"
+	       flash[:event_error] = "全て入力してください。また、タイトル20文字以内・会場30文字以内、メモ150文字以内で入力をお願いします。"
            redirect_back(fallback_location: root_path)
 	    end
 	end
