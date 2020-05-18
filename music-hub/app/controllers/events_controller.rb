@@ -15,10 +15,7 @@ class EventsController < ApplicationController
 		@event_artist = Artist.find(params[:artist_event][:id])
 		@event.artist_id = @event_artist.id
 	  	if @event.save
-		   respond_to do |format|
-		  	 format.html { redirect_back(fallback_location: root_path)}
-		     format.json { render :events , status: :created, location: @events }
-	       end
+		   redirect_back(fallback_location: root_path)
 	    else
 	       flash[:event_error] = "全て入力してください。また、タイトル20文字以内・会場30文字以内、メモ150文字以内で入力をお願いします。"
            redirect_back(fallback_location: root_path)
@@ -28,10 +25,7 @@ class EventsController < ApplicationController
 	def destroy
 		@event = Event.find(params[:id])
 	    @event.destroy
-	    respond_to do |format|
-	    	format.html { redirect_back(fallback_location: root_path)}
-	        format.json { render :events , location: @events }
-    	end
+	    redirect_back(fallback_location: root_path)
 	end
 
 	def update

@@ -1,12 +1,15 @@
 <div class="event-page">
     <div class="container">
         <div class="row">
-            <p align="center"><%= flash[:event_error] %></p>
+            <p align="center">
+                <%= flash[:event_error] %>
+            </p>
             <div class="col-xs-3">
                 <h3 align="center"><strong>マイカレンダー</strong></h3>
                 <%= form_for(@event) do |f| %>
                 <div class="col-xs-12 event-user-new">アーティスト：
                     <%= collection_select :artist_event, :id, @favorites, :artist_id, :name,  {}, class: 'form-control'%>
+                    <%= f.hidden_field :event_id, :value => nil %>
                 </div>
                 <div class="col-xs-12 event-user-new">タイトル：
                     <%= f.text_field :title ,class: 'form-control'%>
@@ -46,23 +49,13 @@
 <!-- カレンダーjavascript -->
 <script>
 $(function() {
-    // 画面遷移を検知
+    function clearCalendar() {
+        $('#calendar').html('');
+    }
+    $(document).on('turbolinks:before-cache', clearCalendar);
+
     $(document).on('turbolinks:load', function() {
         if ($('#calendar').length) {
-
-            function Calendar() {
-                return $('#calendar').fullCalendar({});
-            }
-
-            function clearCalendar() {
-                $('#calendar').html('');
-            }
-
-            $(document).on('turbolinks:load', function() {
-                eventCalendar();
-            });
-            $(document).on('turbolinks:before-cache', clearCalendar);
-
             $('#calendar').fullCalendar({
                 //events.jsonを参照させる（getの際にパラメータとして@user.idを持たせる）
                 events: '/events.json?user_id=<%=@user.id%>',

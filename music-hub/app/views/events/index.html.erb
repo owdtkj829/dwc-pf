@@ -8,9 +8,11 @@
                             <th>
                                 <%= attachment_image_tag @artist, :image, size:"80x80", fallback: "no_image.jpg" %>
                             </th>
-                            <td><p class="event-artist-name">
+                            <td>
+                                <p class="event-artist-name">
                                     <%= @artist.name %>
-                                </p></td>
+                                </p>
+                            </td>
                         </tr>
                     </table>
                 </div>
@@ -32,7 +34,7 @@
             <div class="col-xs-9">
                 <div id="calendar"></div>
                 <div id="inputEditForm">
-                    <%= render 'events/artistedit', events: @events %>
+                    <%= render 'events/artist_edit', events: @events %>
                 </div>
             </div>
         </div>
@@ -40,23 +42,13 @@
 </div>
 <script>
 $(function() {
-    // 画面遷移を検知
+    function clearCalendar() {
+        $('#calendar').html('');
+    }
+    $(document).on('turbolinks:before-cache', clearCalendar);
+
     $(document).on('turbolinks:load', function() {
         if ($('#calendar').length) {
-
-            function Calendar() {
-                return $('#calendar').fullCalendar({});
-            }
-
-            function clearCalendar() {
-                $('#calendar').html('');
-            }
-
-            $(document).on('turbolinks:load', function() {
-                eventCalendar();
-            });
-            $(document).on('turbolinks:before-cache', clearCalendar);
-
             $('#calendar').fullCalendar({
                 //events.jsonを参照させる（getの際にパラメータとして@user.idを持たせる）
                 events: '/events_artist.json?artist_id=<%=@artist.id%>',

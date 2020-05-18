@@ -71,7 +71,11 @@
             </table>
             <div class="modal-footer">
                 <div align="center">
+                    <% if event.user_id == current_user.id %>
+                    <botton class="btn btn-default">登録済み</botton>
+                    <% else %>
                     <%= f.submit "登 録 す る", class: "btn btn-primary"%>
+                    <% end%>
                     <button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
                 </div>
             </div>
