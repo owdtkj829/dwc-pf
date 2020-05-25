@@ -68,7 +68,7 @@ class EventsController < ApplicationController
 	      format.json {
 	        render json:
 	        @event.to_json(
-	          only: [:id, :user_id, :title, :artist_id, :venue, :start, :end, :memo, :share]
+	          only: [:id, :title, :start, :end]
 	        )
 	      }
 	   	end
